@@ -653,6 +653,33 @@ num++;
 _44=_44._parent;
 }
 return num;
+},getMoveNumberFromCoord:function(_45){
+var num=0,_47=this.node;
+var _48;
+var _49={a:0,b:1,c:2,d:3,e:4,f:5,g:6,h:7,i:8,j:9,k:10,l:11,m:12,n:13,o:14,p:15,q:16,r:17,s:18};
+while(_47){
+if(_47.W){
+nodeCoord=_47.W;
+}else{
+if(_47.B){
+nodeCoord=_47.B;
+}else{
+_47=_47._parent;
+continue;
+}
+}
+if(_45.x==_49[nodeCoord.charAt(0)]&&_45.y==_49[nodeCoord.charAt(1)]){
+break;
+}
+_47=_47._parent;
+}
+while(_47){
+if(_47.W||_47.B){
+num++;
+}
+_47=_47._parent;
+}
+return num;
 },getGameRoot:function(){
 if(!this.node){
 return null;
@@ -933,6 +960,20 @@ div.className="point stone "+_2b;
 try{
 div.style.left=(pt.x*this.pointWidth+this.margin-this.scrollX)+"px";
 div.style.top=(pt.y*this.pointHeight+this.margin-this.scrollY)+"px";
+if(this.player.prefs.showMoveNumber){
+var _2e=this.player.cursor.getMoveNumberFromCoord(pt);
+if(_2e!=0){
+if(_2b=="black"){
+div.style.color="white";
+}
+if(_2b=="white"){
+div.style.color="black";
+}
+div.style.textAlign="center";
+div.style.lineHeight="19px";
+div.innerHTML=_2e;
+}
+}
 }
 catch(e){
 }
@@ -940,21 +981,21 @@ this.domNode.appendChild(div);
 return div;
 }
 return null;
-},renderMarker:function(pt,_2f){
+},renderMarker:function(pt,_30){
 if(this.renderCache.markers[pt.x][pt.y]){
-var _30=document.getElementById(this.uniq+"marker-"+pt.x+"-"+pt.y);
-if(_30){
-_30.parentNode.removeChild(_30);
+var _31=document.getElementById(this.uniq+"marker-"+pt.x+"-"+pt.y);
+if(_31){
+_31.parentNode.removeChild(_31);
 }
 }
-if(_2f=="empty"||!_2f){
+if(_30=="empty"||!_30){
 this.renderCache.markers[pt.x][pt.y]=0;
 return null;
 }
 this.renderCache.markers[pt.x][pt.y]=1;
-if(_2f){
-var _31="";
-switch(_2f){
+if(_30){
+var _32="";
+switch(_30){
 case "triangle":
 case "square":
 case "circle":
@@ -965,31 +1006,31 @@ case "dim":
 case "current":
 break;
 default:
-if(_2f.indexOf("var:")==0){
-_31=_2f.substring(4);
-_2f="variation";
+if(_30.indexOf("var:")==0){
+_32=_30.substring(4);
+_30="variation";
 }else{
-_31=_2f;
-_2f="label";
+_32=_30;
+_30="label";
 }
 break;
 }
 var div=document.createElement("div");
 div.id=this.uniq+"marker-"+pt.x+"-"+pt.y;
-div.className="point marker "+_2f;
+div.className="point marker "+_30;
 try{
 div.style.left=(pt.x*this.pointWidth+this.margin-this.scrollX)+"px";
 div.style.top=(pt.y*this.pointHeight+this.margin-this.scrollY)+"px";
 }
 catch(e){
 }
-div.appendChild(document.createTextNode(_31));
+div.appendChild(document.createTextNode(_32));
 this.domNode.appendChild(div);
 return div;
 }
 return null;
-},setCursor:function(_33){
-this.domNode.style.cursor=_33;
+},setCursor:function(_34){
+this.domNode.style.cursor=_34;
 },handleHover:function(e){
 var xy=this.getXY(e);
 this.player.handleBoardHover(xy[0],xy[1],xy[2],xy[3],e);
@@ -1000,66 +1041,66 @@ this.player.handleBoardMouseDown(xy[0],xy[1],xy[2],xy[3],e);
 var xy=this.getXY(e);
 this.player.handleBoardMouseUp(xy[0],xy[1]);
 },getXY:function(e){
-var _3b=eidogo.util.getElClickXY(e,this.domNode);
+var _3c=eidogo.util.getElClickXY(e,this.domNode);
 var m=this.margin;
 var pw=this.pointWidth;
 var ph=this.pointHeight;
-var x=Math.round((_3b[0]-m-(pw/2))/pw);
-var y=Math.round((_3b[1]-m-(ph/2))/ph);
-return [x,y,_3b[0],_3b[1]];
-},crop:function(_41){
+var x=Math.round((_3c[0]-m-(pw/2))/pw);
+var y=Math.round((_3c[1]-m-(ph/2))/ph);
+return [x,y,_3c[0],_3c[1]];
+},crop:function(_42){
 eidogo.util.addClass(this.domContainer,"shrunk");
 this.domGutter.style.overflow="hidden";
-var _42=_41.width*this.pointWidth+(this.margin*2);
-var _43=_41.height*this.pointHeight+(this.margin*2);
-this.domGutter.style.width=_42+"px";
-this.domGutter.style.height=_43+"px";
-this.player.dom.player.style.width=_42+"px";
-this.domGutter.scrollLeft=_41.left*this.pointWidth;
-this.domGutter.scrollTop=_41.top*this.pointHeight;
+var _43=_42.width*this.pointWidth+(this.margin*2);
+var _44=_42.height*this.pointHeight+(this.margin*2);
+this.domGutter.style.width=_43+"px";
+this.domGutter.style.height=_44+"px";
+this.player.dom.player.style.width=_43+"px";
+this.domGutter.scrollLeft=_42.left*this.pointWidth;
+this.domGutter.scrollTop=_42.top*this.pointHeight;
 }};
 eidogo.BoardRendererFlash=function(){
 this.init.apply(this,arguments);
 };
-eidogo.BoardRendererFlash.prototype={init:function(_44,_45,_46,_47){
-if(!_44){
+eidogo.BoardRendererFlash.prototype={init:function(_45,_46,_47,_48){
+if(!_45){
 throw "No DOM container";
 return;
 }
 this.ready=false;
 this.swf=null;
 this.unrendered=[];
-var _48=_44.id+"-board";
-var so=new SWFObject(eidogo.playerPath+"/swf/board.swf",_48,"421","421","8","#665544");
+var _49=_45.id+"-board";
+var so=new SWFObject(eidogo.playerPath+"/swf/board.swf",_49,"421","421","8","#665544");
 so.addParam("allowScriptAccess","sameDomain");
-so.write(_44);
-var _4a=0;
-var _4b=function(){
-swf=eidogo.util.byId(_48);
+so.write(_45);
+var _4b=0;
+var _4c=function(){
+swf=eidogo.util.byId(_49);
 if(!swf||!swf.init){
-if(_4a>2000){
+if(_4b>2000){
 throw "Error initializing board";
 return;
 }
 setTimeout(arguments.callee.bind(this),10);
-_4a+=10;
+_4b+=10;
 return;
 }
 this.swf=swf;
-this.swf.init(_46.uniq,_45);
+this.swf.init(_47.uniq,_46);
 this.ready=true;
 }.bind(this);
-_4b();
-},showRegion:function(_4c){
+_4c();
+},showRegion:function(_4d){
 },hideRegion:function(){
 },clear:function(){
 if(!this.swf){
 return;
 }
 this.swf.clear();
-},renderStone:function(pt,_4e){
+},renderStone:function(pt,_4f){
 if(!this.swf){
-this.unrendered.push(["stone",pt,_4e]);
+this.unrendered.push(["stone",pt,_4f]);
 return;
 }
 for(var i=0;i<this.unrendered.length;i++){
@@ -1068,13 +1109,13 @@ this.swf.renderStone(this.unrendered[i][1],this.unrendered[i][2]);
 }
 }
 this.unrendered=[];
-this.swf.renderStone(pt,_4e);
-},renderMarker:function(pt,_51){
-if(!_51){
+this.swf.renderStone(pt,_4f);
+},renderMarker:function(pt,_52){
+if(!_52){
 return;
 }
 if(!this.swf){
-this.unrendered.push(["marker",pt,_51]);
+this.unrendered.push(["marker",pt,_52]);
 return;
 }
 for(var i=0;i<this.unrendered.length;i++){
@@ -1083,28 +1124,28 @@ this.swf.renderMarker(this.unrendered[i][1],this.unrendered[i][2]);
 }
 }
 this.unrendered=[];
-this.swf.renderMarker(pt,_51);
-},setCursor:function(_53){
+this.swf.renderMarker(pt,_52);
+},setCursor:function(_54){
 },crop:function(){
 }};
-eidogo.BoardRendererAscii=function(_54,_55){
-this.init(_54,_55);
+eidogo.BoardRendererAscii=function(_55,_56){
+this.init(_55,_56);
 };
-eidogo.BoardRendererAscii.prototype={pointWidth:2,pointHeight:1,margin:1,blankBoard:"+-------------------------------------+\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"+-------------------------------------+",init:function(_56,_57){
-this.domNode=_56||null;
-this.boardSize=_57||19;
+eidogo.BoardRendererAscii.prototype={pointWidth:2,pointHeight:1,margin:1,blankBoard:"+-------------------------------------+\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"|. . . . . . . . . . . . . . . . . . .|\n"+"+-------------------------------------+",init:function(_57,_58){
+this.domNode=_57||null;
+this.boardSize=_58||19;
 this.content=this.blankBoard;
 },clear:function(){
 this.content=this.blankBoard;
 this.domNode.innerHTML="<pre>"+this.content+"</pre>";
-},renderStone:function(pt,_59){
-var _5a=(this.pointWidth*this.boardSize+this.margin*2)*(pt.y*this.pointHeight+1)+(pt.x*this.pointWidth)+2;
-this.content=this.content.substring(0,_5a-1)+"."+this.content.substring(_5a);
-if(_59!="empty"){
-this.content=this.content.substring(0,_5a-1)+(_59=="white"?"O":"#")+this.content.substring(_5a);
+},renderStone:function(pt,_5a){
+var _5b=(this.pointWidth*this.boardSize+this.margin*2)*(pt.y*this.pointHeight+1)+(pt.x*this.pointWidth)+2;
+this.content=this.content.substring(0,_5b-1)+"."+this.content.substring(_5b);
+if(_5a!="empty"){
+this.content=this.content.substring(0,_5b-1)+(_5a=="white"?"O":"#")+this.content.substring(_5b);
 }
 this.domNode.innerHTML="<pre>"+this.content+"</pre>";
-},renderMarker:function(pt,_5c){
+},renderMarker:function(pt,_5d){
 }};
 
 eidogo.Rules=function(_1){
@@ -1283,6 +1324,7 @@ this.prefs.showTools=!!cfg.showTools;
 this.prefs.showComments=typeof cfg.showComments!="undefined"?!!cfg.showComments:true;
 this.prefs.showOptions=!!cfg.showOptions;
 this.prefs.showNavTree=!this.progressiveLoad&&typeof cfg.showNavTree!="undefined"?!!cfg.showNavTree:false;
+this.prefs.showMoveNumber=!!cfg.showMoveNumber;
 },loadSgf:function(cfg,_16){
 cfg=cfg||{};
 this.nowLoading();

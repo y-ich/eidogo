@@ -263,6 +263,18 @@ eidogo.BoardRendererHtml.prototype = {
             try {
                 div.style.left = (pt.x * this.pointWidth + this.margin - this.scrollX) + "px";
                 div.style.top = (pt.y * this.pointHeight + this.margin - this.scrollY) + "px";
+
+                // show move number
+                if(this.player.prefs.showMoveNumber){
+                    var number = this.player.cursor.getMoveNumberFromCoord(pt);
+                    if(number != 0){
+                        if(color == "black") div.style.color = "white";
+                        if(color == "white") div.style.color = "black";
+                        div.style.textAlign="center";
+                        div.style.lineHeight="19px";
+                        div.innerHTML = number;
+                    }
+                }
             } catch (e) {}
             this.domNode.appendChild(div);
             return div;

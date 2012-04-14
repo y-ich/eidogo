@@ -309,6 +309,7 @@ eidogo.Player.prototype = {
         this.prefs.showOptions = !!cfg.showOptions;
         this.prefs.showNavTree = !this.progressiveLoad && typeof cfg.showNavTree != "undefined" ?
             !!cfg.showNavTree : false;
+        this.prefs.showMoveNumber = !!cfg.showMoveNumber;
     },
     
     /**

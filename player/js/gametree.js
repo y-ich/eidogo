@@ -337,6 +337,35 @@ eidogo.GameCursor.prototype = {
         }
         return num;
     },
+    getMoveNumberFromCoord: function(coord) {
+        var num = 0,
+            node = this.node;
+        var move;
+        var sgfCoords = {
+            a: 0, b: 1, c: 2, d: 3, e: 4, f: 5, g: 6, h: 7, i: 8, j: 9,
+            k: 10,l: 11, m: 12, n: 13, o: 14, p: 15, q: 16, r: 17, s: 18
+        };
+
+        while (node) {
+            if (node.W){
+                nodeCoord = node.W;
+            }else if (node.B) {
+                nodeCoord = node.B;
+            }else{
+                node = node._parent;
+                continue;
+            }
+            if (coord.x == sgfCoords[nodeCoord.charAt(0)] && coord.y == sgfCoords[nodeCoord.charAt(1)]){
+                break;
+            }
+            node = node._parent;
+        }
+        while (node) {
+            if (node.W || node.B) num++;
+            node = node._parent;
+        }
+        return num;
+    },
     getGameRoot: function() {
         if (!this.node) return null;
         var cur = new eidogo.GameCursor(this.node);
