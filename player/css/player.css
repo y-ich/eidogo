@@ -103,6 +103,16 @@
     background-position: 0 -471px;
 	cursor: pointer;
 }
+.eidogo-player .controls .delete {
+	float: right;
+    background-position: 0 -520px;
+	cursor: pointer;
+}
+.eidogo-player .controls .delete-on {
+	float: right;
+    background-position: 0 -569px;
+	cursor: pointer;
+}
 .eidogo-player .move-number {
 	position: absolute;
 	top: 12px;
@@ -973,6 +983,7 @@
 }
 .eidogo-player.theme-problem .controls .forward, 
 .eidogo-player.theme-problem .controls .last, .eidogo-player.theme-problem .controls .pass,
+.eidogo-player.theme-problem .controls .delete, 
 .eidogo-player.theme-problem .variations-container, .eidogo-player.theme-problem .nav-slider,
 .eidogo-player.theme-problem .move-number {
     display: none;

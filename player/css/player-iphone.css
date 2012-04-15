@@ -76,6 +76,14 @@
 	background-position: 22px -462px;
 	cursor: pointer;
 }
+.eidogo-player .controls .delete {
+	background-position: 22px -511px;
+	cursor: pointer;
+}
+.eidogo-player .controls .delete-on {
+	background-position: 22px -560px;
+	cursor: pointer;
+}
 .eidogo-player .move-number {
 	position: absolute;
 	top: 65px;

@@ -1062,6 +1062,28 @@ eidogo.Player.prototype = {
         }
         this.createMove('tt');
     },
+    del: function() {
+        if (!this.cursor.hasPrevious()) {
+            return;
+        }
+
+        var killNode = window.confirm(t['confirm delete']);
+        if (killNode) {
+            var id = this.cursor.node._id;
+            var index = 0;
+            this.back();
+            this.cursor.node._children = this.cursor.node._children.filter(function(node, i) {
+                if (node._id == id) {
+                    index = i;
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+            if (index && this.cursor.node._preferredChild == index)
+                this.cursor.node._preferredChild--;
+        }
+    },
 
     /**
      * Handle a mouse-down event on a particular point. This function gets
@@ -1951,9 +1973,11 @@ eidogo.Player.prototype = {
         if (this.cursor.hasPrevious()) {
             addClass(this.dom.controlBack, "back-on");
             addClass(this.dom.controlFirst, "first-on");
+            addClass(this.dom.controlDelete, "delete-on");
         } else {
             removeClass(this.dom.controlBack, "back-on");
             removeClass(this.dom.controlFirst, "first-on");
+            removeClass(this.dom.controlDelete, "delete-on");
             var info = "";
             if (!this.prefs.showPlayerInfo)
                 info += this.getGameDescription(true);
@@ -2159,6 +2183,7 @@ eidogo.Player.prototype = {
                     <li id='control-forward' class='control forward'>Forward</li>\
                     <li id='control-last' class='control last'>Last</li>\
                     <li id='control-pass' class='control pass'>Pass</li>\
+                    <li id='control-delete' class='control delete'>Delete</li>\
                 </ul>\
                 <div id='move-number' class='move-number" + (this.permalinkable ? " permalink" : "") + "'></div>\
                 <div id='nav-slider' class='nav-slider'>\
@@ -2282,6 +2307,7 @@ eidogo.Player.prototype = {
          ['controlForward',   'forward'],
          ['controlLast',      'last'],
          ['controlPass',      'pass'],
+         ['controlDelete',    'del'],
          ['scoreEst',         'fetchScoreEstimate'],
          ['searchButton',     'searchRegion'],
          ['searchResults',    'loadSearchResult'],
