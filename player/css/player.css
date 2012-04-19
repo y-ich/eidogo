@@ -113,10 +113,20 @@
     background-position: 0 -569px;
 	cursor: pointer;
 }
+.eidogo-player .controls .number {
+	float: right;
+    background-position: 0 -618px;
+	cursor: pointer;
+}
+.eidogo-player .controls .number-on {
+	float: right;
+    background-position: 0 -667px;
+	cursor: pointer;
+}
 .eidogo-player .move-number {
 	position: absolute;
-	top: 12px;
-	left: 230px;
+	top: 60px;
+	left: 200px;
 	color: #acc;
 }
 .eidogo-player .permalink {
@@ -983,7 +993,8 @@
 }
 .eidogo-player.theme-problem .controls .forward, 
 .eidogo-player.theme-problem .controls .last, .eidogo-player.theme-problem .controls .pass,
-.eidogo-player.theme-problem .controls .delete, 
+.eidogo-player.theme-problem .controls .delete,
+.eidogo-player.theme-problem .controls .number,
 .eidogo-player.theme-problem .variations-container, .eidogo-player.theme-problem .nav-slider,
 .eidogo-player.theme-problem .move-number {
     display: none;

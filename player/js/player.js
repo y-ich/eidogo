@@ -1084,6 +1084,16 @@ eidogo.Player.prototype = {
                 this.cursor.node._preferredChild--;
         }
     },
+    num: function() {
+        if(this.prefs.showMoveNumber){
+            removeClass(this.dom.controlNumber, "number-on");
+            this.prefs.showMoveNumber = false;
+        }else{
+            addClass(this.dom.controlNumber, "number-on");
+            this.prefs.showMoveNumber = true;
+        }
+        this.board.render(true);
+    },
 
     /**
      * Handle a mouse-down event on a particular point. This function gets
@@ -2184,6 +2194,7 @@ eidogo.Player.prototype = {
                     <li id='control-last' class='control last'>Last</li>\
                     <li id='control-pass' class='control pass'>Pass</li>\
                     <li id='control-delete' class='control delete'>Delete</li>\
+                    <li id='control-number' class='control number'>Number</li>\
                 </ul>\
                 <div id='move-number' class='move-number" + (this.permalinkable ? " permalink" : "") + "'></div>\
                 <div id='nav-slider' class='nav-slider'>\
@@ -2308,6 +2319,7 @@ eidogo.Player.prototype = {
          ['controlLast',      'last'],
          ['controlPass',      'pass'],
          ['controlDelete',    'del'],
+         ['controlNumber',    'num'],
          ['scoreEst',         'fetchScoreEstimate'],
          ['searchButton',     'searchRegion'],
          ['searchResults',    'loadSearchResult'],

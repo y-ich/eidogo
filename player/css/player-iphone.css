@@ -65,6 +65,13 @@
     background-position: 22px -364px;
 	cursor: pointer;
 }
+.eidogo-player .controls .number {
+	background-position: 22px -609px;
+}
+.eidogo-player .controls .number-on {
+	background-position: 22px -658px;
+	cursor: pointer;
+}
 .eidogo-player .controls .pass {
 	float: right;
 	background-position: 22px -413px;
@@ -77,6 +84,7 @@
 	cursor: pointer;
 }
 .eidogo-player .controls .delete {
+	float: right;
 	background-position: 22px -511px;
 	cursor: pointer;
 }
@@ -87,7 +95,7 @@
 .eidogo-player .move-number {
 	position: absolute;
 	top: 65px;
-	left: 180px;
+	left: 130px;
 	color: #8aa;
 	font-size: 13px;
 	text-decoration: underline;
