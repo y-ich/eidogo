@@ -1914,6 +1914,7 @@ if(_97&&this.cursor.node._preferredChild==_97){
 this.cursor.node._preferredChild--;
 }
 }
+this.refresh();
 },num:function(){
 if(this.prefs.showMoveNumber){
 _9(this.dom.controlNumber,"number-on");

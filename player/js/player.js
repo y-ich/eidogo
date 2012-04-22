@@ -1083,6 +1083,7 @@ eidogo.Player.prototype = {
             if (index && this.cursor.node._preferredChild == index)
                 this.cursor.node._preferredChild--;
         }
+        this.refresh();
     },
     num: function() {
         if(this.prefs.showMoveNumber){
