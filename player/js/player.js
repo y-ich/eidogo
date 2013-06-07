@@ -1084,6 +1084,8 @@ eidogo.Player.prototype = {
                 this.cursor.node._preferredChild--;
         }
         this.refresh();
+        this.updatedNavTree = false;
+        this.updateNavTree(true);
     },
     num: function() {
         if(this.prefs.showMoveNumber){

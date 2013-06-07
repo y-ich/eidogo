@@ -1915,6 +1915,8 @@ this.cursor.node._preferredChild--;
 }
 }
 this.refresh();
+this.updatedNavTree=false;
+this.updateNavTree(true);
 },num:function(){
 if(this.prefs.showMoveNumber){
 _9(this.dom.controlNumber,"number-on");
