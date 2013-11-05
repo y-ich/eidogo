@@ -1664,7 +1664,6 @@ return;
 var _5d=true;
 while(_57.length){
 _5b=parseInt(_57.shift(),10);
-console.log(this.cursor.node._children.length,_5b);
 if(_57.length==0){
 if(_58){
 _5b++;
@@ -1675,11 +1674,9 @@ this.variation(0,true);
 }else{
 if(!_5d){
 this.variation(_5b,true);
-console.log("variation",this.cursor.node._children.length);
 if(_57.length>1){
 while(this.cursor.node._children.length==1){
 this.variation(0,true);
-console.log("path");
 }
 }
 }

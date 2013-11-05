@@ -776,7 +776,6 @@ eidogo.Player.prototype = {
         var first = true;
         while (path.length) {
             position = parseInt(path.shift(), 10);
-            console.log(this.cursor.node._children.length, position);
             if (path.length == 0) {
                 if (fromStart)
                     position++;
@@ -784,12 +783,9 @@ eidogo.Player.prototype = {
                     this.variation(0, true);
             } else if (!first) {
                 this.variation(position, true);
-                console.log('variation', this.cursor.node._children.length);
                 if (path.length > 1)
-                    while (this.cursor.node._children.length == 1) {
+                    while (this.cursor.node._children.length == 1)
                         this.variation(0, true);
-                        console.log('path');
-                    }
             }
             first = false;
         }
