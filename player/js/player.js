@@ -725,7 +725,7 @@ eidogo.Player.prototype = {
     goTo: function(path, fromStart) {
         fromStart = typeof fromStart != "undefined" ? fromStart : true;
         
-        if (fromStart && path.length > 1 && path[0] != this.cursor.getGameRoot().getPosition())
+        if (fromStart && path.length > 1 && path[1] != this.cursor.getGameRoot().getPosition())
             this.updatedNavTree = false;
         
         if (fromStart)
@@ -773,19 +773,17 @@ eidogo.Player.prototype = {
         }
         
         // Path of branch indexes and final move number
-        var first = true;
         while (path.length) {
             position = parseInt(path.shift(), 10);
-            if (!path.length) {
+            if (path.length == 0) {
                 for (var i = 0; i < position; i++)
                     this.variation(0, true);
-            } else if (path.length) {
-                if (!first && fromStart)
+            } else {
+                this.variation(position, true);
+                if (path.length > 1)
                     while (this.cursor.node._children.length == 1)
                         this.variation(0, true);
-                this.variation(position, true);
             }
-            first = false;
         }
         this.refresh();
     },
