@@ -674,7 +674,7 @@ eidogo.Player.prototype = {
      * Use GNU Go to estimate the score.
      * Thanks to Sorin Gherman for the idea and for getting this started!
     **/
-    fetchScoreEstimate: function() {
+    fetchScoreEstimate: function(method) {
         this.nowLoading(t['gnugo thinking']);
         var success = function(req) {
             this.doneLoading();
@@ -698,6 +698,7 @@ eidogo.Player.prototype = {
             komi: root.KM || 0,
             mn: this.moveNumber + 1
         };
+        if (method) params.method = method;
         ajax('post', this.scoreEstUrl, params, success, failure, this, 45000);
     },
     
