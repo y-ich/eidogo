@@ -1825,7 +1825,7 @@ eidogo.Player.prototype = {
             this.hideRegion();
             hide(this.dom.searchButton);
             hide(this.dom.searchAlgo);
-            if (this.searchUrl)
+            if (this.searchUrl || this.scoreEstUrl)
                 show(this.dom.scoreEst, "inline");
         }
         this.board.renderer.setCursor(cursor);
