@@ -2530,7 +2530,7 @@ this.regionBegun=false;
 this.hideRegion();
 _b(this.dom.searchButton);
 _b(this.dom.searchAlgo);
-if(this.searchUrl){
+if(this.searchUrl||this.scoreEstUrl){
 _a(this.dom.scoreEst,"inline");
 }
 }
