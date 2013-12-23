@@ -351,6 +351,8 @@ eidogo.GameCursor.prototype = {
                 nodeCoord = node.W;
             }else if (node.B) {
                 nodeCoord = node.B;
+            }else if (node.FG) {
+                return 0;
             }else{
                 node = node._parent;
                 continue;
@@ -362,6 +364,10 @@ eidogo.GameCursor.prototype = {
         }
         while (node) {
             if (node.W || node.B) num++;
+            if (node.FG) {
+                num += parseInt((node.MN || '1')) - 1
+                break;
+            }
             node = node._parent;
         }
         return num;

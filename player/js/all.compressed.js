@@ -664,8 +664,12 @@ nodeCoord=_47.W;
 if(_47.B){
 nodeCoord=_47.B;
 }else{
+if(_47.FG){
+return 0;
+}else{
 _47=_47._parent;
 continue;
+}
 }
 }
 if(_45.x==_49[nodeCoord.charAt(0)]&&_45.y==_49[nodeCoord.charAt(1)]){
@@ -676,6 +680,10 @@ _47=_47._parent;
 while(_47){
 if(_47.W||_47.B){
 num++;
+}
+if(_47.FG){
+num+=parseInt((_47.MN||"1"))-1;
+break;
 }
 _47=_47._parent;
 }
