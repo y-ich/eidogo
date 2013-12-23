@@ -1034,7 +1034,7 @@ eidogo.Player.prototype = {
     },
 
     back: function(e, obj, noRender) {
-        if (this.cursor.previous()) {
+        if (!this.cursor.node.FG && this.cursor.previous()) {
             this.board.revert(1);
             this.goingBack = true;
             this.refresh(noRender);
@@ -1047,8 +1047,15 @@ eidogo.Player.prototype = {
     },
 
     first: function() {
-        if (!this.cursor.hasPrevious()) return;
-        this.resetCursor(false, true);
+        var node;
+        if (this.cursor.node.FG || !this.cursor.hasPrevious()) return;
+        node = this.cursor.node
+        while (node && !node.FG) node = node._parent;
+        if (node) {
+            while (!this.cursor.node.FG) this.back(null, null, true);
+            this.refresh()
+        } else
+            this.resetCursor(false, true);
     },
 
     last: function() {
