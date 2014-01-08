@@ -92,10 +92,24 @@
 	background-position: 22px -560px;
 	cursor: pointer;
 }
+.eidogo-player .controls .auto {
+    text-indent: 0px;
+    font-size: 11px;
+    text-align: center;
+    line-height: 38px;
+    color: black;
+    background-position: 22px -707px;
+	cursor: pointer;
+}
+.eidogo-player .controls .auto-on {
+    color: red;
+    background-position: 22px -756px;
+	cursor: pointer;
+}
 .eidogo-player .move-number {
 	position: absolute;
-	top: 65px;
-	left: 130px;
+	top: 35px;
+	left: 150px;
 	color: #8aa;
 	font-size: 13px;
 	text-decoration: underline;

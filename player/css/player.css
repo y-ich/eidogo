@@ -123,6 +123,20 @@
     background-position: 0 -667px;
 	cursor: pointer;
 }
+.eidogo-player .controls .auto {
+    text-indent: 0px;
+    font-size: 11px;
+    text-align: center;
+    line-height: 19px;
+    color: black;
+    background-position: 0 -716px;
+	cursor: pointer;
+}
+.eidogo-player .controls .auto-on {
+    color: red;
+    background-position: 0 -765px;
+	cursor: pointer;
+}
 .eidogo-player .move-number {
 	position: absolute;
 	top: 60px;
@@ -830,7 +844,8 @@
     padding-top: 0;
 }
 .eidogo-player.theme-compact .move-number {
-    top: 9px;
+    top: 18px;
+    left: 160px;
 }
 .eidogo-player.theme-compact .nav-slider {
     width: 411px;

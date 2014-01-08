@@ -1109,6 +1109,21 @@ eidogo.Player.prototype = {
         }
         this.board.render(true);
     },
+    auto: function() {
+        var self = this;
+        if (self.autoTimer) {
+            clearInterval(self.autoTimer);
+            self.autoTimer = null;
+        }
+        else {
+            self.autoTimer = setInterval(function () {
+                if (!self.variation()) {
+                    clearInterval(self.autoTimer);
+                    self.autoTimer = null;
+                }
+            }, 1000);
+        }
+    },
 
     /**
      * Handle a mouse-down event on a particular point. This function gets
@@ -1991,9 +2006,11 @@ eidogo.Player.prototype = {
         if (this.cursor.hasNext()) {
             addClass(this.dom.controlForward, "forward-on");
             addClass(this.dom.controlLast, "last-on");
+            addClass(this.dom.controlAuto, "auto-on");
         } else {
             removeClass(this.dom.controlForward, "forward-on");
             removeClass(this.dom.controlLast, "last-on");
+            removeClass(this.dom.controlAuto, "auto-on");
         }
         if (this.cursor.hasPrevious()) {
             addClass(this.dom.controlBack, "back-on");
@@ -2206,6 +2223,7 @@ eidogo.Player.prototype = {
                     <li id='control-first' class='control first'>First</li>\
                     <li id='control-back' class='control back'>Back</li>\
                     <li id='control-forward' class='control forward'>Forward</li>\
+                    <li id='control-auto' class='control auto'>AUTO</li>\
                     <li id='control-last' class='control last'>Last</li>\
                     <li id='control-pass' class='control pass'>Pass</li>\
                     <li id='control-delete' class='control delete'>Delete</li>\
@@ -2335,6 +2353,7 @@ eidogo.Player.prototype = {
          ['controlPass',      'pass'],
          ['controlDelete',    'del'],
          ['controlNumber',    'num'],
+         ['controlAuto',      'auto'],
          ['scoreEst',         'fetchScoreEstimate'],
          ['searchButton',     'searchRegion'],
          ['searchResults',    'loadSearchResult'],
