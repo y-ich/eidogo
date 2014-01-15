@@ -1114,6 +1114,7 @@ eidogo.Player.prototype = {
         if (self.autoTimer) {
             clearInterval(self.autoTimer);
             self.autoTimer = null;
+            addClass(this.dom.controlAuto, "auto-on");
         }
         else {
             self.autoTimer = setInterval(function () {
@@ -1122,6 +1123,7 @@ eidogo.Player.prototype = {
                     self.autoTimer = null;
                 }
             }, 1000);
+            removeClass(this.dom.controlAuto, "auto-on");
         }
     },
 

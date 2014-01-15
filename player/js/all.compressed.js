@@ -1963,6 +1963,7 @@ var _9d=this;
 if(_9d.autoTimer){
 clearInterval(_9d.autoTimer);
 _9d.autoTimer=null;
+_8(this.dom.controlAuto,"auto-on");
 }else{
 _9d.autoTimer=setInterval(function(){
 if(!_9d.variation()){
@@ -1970,6 +1971,7 @@ clearInterval(_9d.autoTimer);
 _9d.autoTimer=null;
 }
 },1000);
+_9(this.dom.controlAuto,"auto-on");
 }
 },handleBoardMouseDown:function(x,y,cx,cy,e){
 if(this.domLoading){
