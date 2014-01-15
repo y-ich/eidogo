@@ -2008,7 +2008,8 @@ eidogo.Player.prototype = {
         if (this.cursor.hasNext()) {
             addClass(this.dom.controlForward, "forward-on");
             addClass(this.dom.controlLast, "last-on");
-            addClass(this.dom.controlAuto, "auto-on");
+            if (!this.autoTimer)
+                addClass(this.dom.controlAuto, "auto-on");
         } else {
             removeClass(this.dom.controlForward, "forward-on");
             removeClass(this.dom.controlLast, "last-on");
