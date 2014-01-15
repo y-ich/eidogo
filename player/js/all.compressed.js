@@ -2699,7 +2699,9 @@ this.dom.variations.innerHTML="<div class='variation-nav none'>"+t["no variation
 if(this.cursor.hasNext()){
 _8(this.dom.controlForward,"forward-on");
 _8(this.dom.controlLast,"last-on");
+if(!this.autoTimer){
 _8(this.dom.controlAuto,"auto-on");
+}
 }else{
 _9(this.dom.controlForward,"forward-on");
 _9(this.dom.controlLast,"last-on");
