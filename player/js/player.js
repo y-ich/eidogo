@@ -104,6 +104,7 @@ eidogo.Player.prototype = {
             B:  this.playMove,
             KO: this.playMove,
             MN: this.setMoveNumber,
+            FG: this.careCurrentColor,
             AW: this.addStone,
             AB: this.addStone,
             AE: this.addStone,
@@ -2716,6 +2717,14 @@ eidogo.Player.prototype = {
                 msg.replace(/\n/g, "<br />") + "</div>";
             this.croaked = true;
         }
+    },
+
+    /*
+     * You need to take care currentColor when going back to FG node.
+    */
+    careCurrentColor: function() {
+        if (this.goingBack)
+            this.currentColor = this.currentColor === 'B' ? 'W' : 'B';
     }
 };
     
