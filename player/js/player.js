@@ -2221,7 +2221,25 @@ eidogo.Player.prototype = {
         this.dom.container.appendChild(this.dom.player);
     
         var domHtml = "\
-            <div id='board-container' class='board-container'></div>\
+            <div class='board-capture'>\
+                <div id='board-container' class='board-container'></div>\
+                <div id='info' class='info'>\
+                    <div id='info-players' class='players'>\
+                        <div id='white' class='player white'>\
+                            <div id='white-name' class='name'></div>\
+                            <div id='white-captures' class='captures'></div>\
+                            <div id='white-time' class='time'></div>\
+                        </div>\
+                        <div id='black' class='player black'>\
+                            <div id='black-name' class='name'></div>\
+                            <div id='black-captures' class='captures'></div>\
+                            <div id='black-time' class='time'></div>\
+                        </div>\
+                    </div>\
+                    <div id='info-game' class='game'></div>\
+                </div>\
+                <div style='clear: both;'></div>\
+            </div>\
             <div id='controls-container' class='controls-container'>\
                 <ul id='controls' class='controls'>\
                     <li id='control-first' class='control first'>First</li>\
@@ -2294,21 +2312,6 @@ eidogo.Player.prototype = {
                     </div>\
                     <div id='search-results' class='search-results'></div>\
                 </div>\
-            </div>\
-            <div id='info' class='info'>\
-                <div id='info-players' class='players'>\
-                    <div id='white' class='player white'>\
-                        <div id='white-name' class='name'></div>\
-                        <div id='white-captures' class='captures'></div>\
-                        <div id='white-time' class='time'></div>\
-                    </div>\
-                    <div id='black' class='player black'>\
-                        <div id='black-name' class='name'></div>\
-                        <div id='black-captures' class='captures'></div>\
-                        <div id='black-time' class='time'></div>\
-                    </div>\
-                </div>\
-                <div id='info-game' class='game'></div>\
             </div>\
             <div id='nav-tree-container' class='nav-tree-container'>\
                 <div id='nav-tree' class='nav-tree'></div>\
