@@ -1707,6 +1707,9 @@ eidogo.Player.prototype = {
         this.unsavedChanges = [this.cursor.node._children.last(), this.cursor.node];
         this.updatedNavTree = false;
         this.variation(this.cursor.node._children.length-1);
+        var e = document.createEvent('CustomEvent');
+        e.initCustomEvent('eidogo-update', false, true);
+        this.dom.player.dispatchEvent(e);
     },
 
     /**
