@@ -1180,6 +1180,8 @@ eidogo.Player.prototype = {
      * Called by the board renderer upon mouse up, with appropriate coordinate
     **/
     handleBoardMouseUp: function(x, y, e) {
+        var updated = false;
+
         if (this.domLoading) return;
         
         this.mouseDown = false;
@@ -1230,6 +1232,7 @@ eidogo.Player.prototype = {
                 } else {
                     // move doesn't exist yet
                     this.createMove(coord);
+                    updated = true;
                 }
             }
         } else if (this.mode == "region" && x >= -1 && y >= -1 && this.regionBegun) {
@@ -1262,8 +1265,10 @@ eidogo.Player.prototype = {
                 var deleted = this.cursor.node.emptyPoint(this.pointToSgfCoord({x:x,y:y}));
                 if (stone != this.board.BLACK && this.mode == "add_b") {
                     prop = "AB";
+                    updated = true;
                 } else if (stone != this.board.WHITE && this.mode == "add_w") {
                     prop = "AW";
+                    updated = true;
                 } else if (this.board.getStone({x:x,y:y}) != this.board.EMPTY && !deleted) {
                     prop = "AE";
                 }
@@ -1305,6 +1310,12 @@ eidogo.Player.prototype = {
             var deleted = this.checkForEmptyNode();
             this.refresh();
             if (deleted) this.prependComment(t['position deleted']);
+        }
+
+        if (updated) {
+            var e = document.createEvent('CustomEvent');
+            e.initCustomEvent('eidogo-update', false, true);
+            this.dom.player.dispatchEvent(e);
         }
     },
     
@@ -1707,9 +1718,6 @@ eidogo.Player.prototype = {
         this.unsavedChanges = [this.cursor.node._children.last(), this.cursor.node];
         this.updatedNavTree = false;
         this.variation(this.cursor.node._children.length-1);
-        var e = document.createEvent('CustomEvent');
-        e.initCustomEvent('eidogo-update', false, true);
-        this.dom.player.dispatchEvent(e);
     },
 
     /**
