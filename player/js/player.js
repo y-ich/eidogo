@@ -1074,6 +1074,7 @@ eidogo.Player.prototype = {
             }
         }
         this.createMove('tt');
+        this.trigger();
     },
     del: function() {
         if (!this.cursor.hasPrevious()) {
@@ -1312,11 +1313,7 @@ eidogo.Player.prototype = {
             if (deleted) this.prependComment(t['position deleted']);
         }
 
-        if (updated) {
-            var e = document.createEvent('CustomEvent');
-            e.initCustomEvent('eidogo-update', false, true);
-            this.dom.player.dispatchEvent(e);
-        }
+        if (updated) this.trigger();
     },
     
     /**
@@ -2739,6 +2736,12 @@ eidogo.Player.prototype = {
     careCurrentColor: function() {
         if (this.goingBack)
             this.currentColor = this.currentColor === 'B' ? 'W' : 'B';
+    },
+    
+    trigger: function() {
+        var e = document.createEvent('CustomEvent');
+        e.initCustomEvent('eidogo-update', false, true);
+        this.dom.player.dispatchEvent(e);
     }
 };
     
