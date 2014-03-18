@@ -1938,6 +1938,7 @@ return;
 }
 }
 this.createMove("tt");
+this.trigger();
 },del:function(){
 if(!this.cursor.hasPrevious()){
 return;
@@ -2155,9 +2156,7 @@ this.prependComment(t["position deleted"]);
 }
 }
 if(_ad){
-var e=document.createEvent("CustomEvent");
-e.initCustomEvent("eidogo-update",false,true);
-this.dom.player.dispatchEvent(e);
+this.trigger();
 }
 },checkForEmptyNode:function(){
 if(!eidogo.util.numProperties(this.cursor.node.getProperties())){
@@ -3230,6 +3229,10 @@ this.croaked=true;
 if(this.goingBack){
 this.currentColor=this.currentColor==="B"?"W":"B";
 }
+},trigger:function(){
+var e=document.createEvent("CustomEvent");
+e.initCustomEvent("eidogo-update",false,true);
+this.dom.player.dispatchEvent(e);
 }};
 })();
 
