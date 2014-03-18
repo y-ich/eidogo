@@ -1937,8 +1937,10 @@ this.variation(this.variations[i].varNum);
 return;
 }
 }
+if(this.mode==="play"){
 this.createMove("tt");
 this.trigger();
+}
 },del:function(){
 if(!this.cursor.hasPrevious()){
 return;

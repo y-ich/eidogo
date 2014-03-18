@@ -1073,8 +1073,10 @@ eidogo.Player.prototype = {
                 return;
             }
         }
-        this.createMove('tt');
-        this.trigger();
+        if (this.mode === 'play') {
+            this.createMove('tt');
+            this.trigger();
+        }
     },
     del: function() {
         if (!this.cursor.hasPrevious()) {
