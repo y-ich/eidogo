@@ -6,7 +6,7 @@ var _3=document.createEvent("CustomEvent");
 _3.initCustomEvent(_1,_2.bubbles,_2.cancelable,_2.detail);
 return _3;
 }
-CustomEvent.prototype=window.CustomEvent.prototype;
+CustomEvent.prototype=window.Event.prototype;
 window.CustomEvent=CustomEvent;
 })();
 }
