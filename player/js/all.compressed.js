@@ -1621,6 +1621,7 @@ this.prependComment(_50[0]);
 if(_4d){
 _4d();
 }
+this.trigger("eidogo-rendered");
 };
 var _54=function(req){
 this.croak(t["error retrieving"]);
@@ -1784,6 +1785,7 @@ this.findVariations();
 this.updateControls();
 this.board.commit();
 this.board.render();
+this.trigger("eidogo-rendered");
 }
 if(!_68&&this.progressiveUrl){
 this.fetchProgressiveData();
@@ -1939,7 +1941,7 @@ return;
 }
 if(this.mode==="play"){
 this.createMove("tt");
-this.trigger();
+this.trigger("eidogo-update");
 }
 },del:function(){
 if(!this.cursor.hasPrevious()){
@@ -1974,6 +1976,7 @@ _8(this.dom.controlNumber,"number-on");
 this.prefs.showMoveNumber=true;
 }
 this.board.render(true);
+this.trigger("eidogo-rendered");
 },auto:function(){
 var _9d=this;
 if(_9d.autoTimer){
@@ -2158,7 +2161,7 @@ this.prependComment(t["position deleted"]);
 }
 }
 if(_ad){
-this.trigger();
+this.trigger("eidogo-update");
 }
 },checkForEmptyNode:function(){
 if(!eidogo.util.numProperties(this.cursor.node.getProperties())){
@@ -3231,9 +3234,9 @@ this.croaked=true;
 if(this.goingBack){
 this.currentColor=this.currentColor==="B"?"W":"B";
 }
-},trigger:function(){
+},trigger:function(name){
 var e=document.createEvent("CustomEvent");
-e.initCustomEvent("eidogo-update",false,true);
+e.initCustomEvent(name,false,true);
 this.dom.player.dispatchEvent(e);
 }};
 })();

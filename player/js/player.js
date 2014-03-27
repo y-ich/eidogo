@@ -688,6 +688,7 @@ eidogo.Player.prototype = {
             this.board.render();
             this.prependComment(result[0]);
             if (callback) callback();
+            this.trigger('eidogo-rendered');
         }
         var failure = function(req) {
             this.croak(t['error retrieving']);
@@ -902,6 +903,7 @@ eidogo.Player.prototype = {
             this.updateControls();
             this.board.commit();
             this.board.render();
+            this.trigger('eidogo-rendered');
         }
         
         // progressive loading?        
@@ -1075,7 +1077,7 @@ eidogo.Player.prototype = {
         }
         if (this.mode === 'play') {
             this.createMove('tt');
-            this.trigger();
+            this.trigger('eidogo-update');
         }
     },
     del: function() {
@@ -1112,6 +1114,7 @@ eidogo.Player.prototype = {
             this.prefs.showMoveNumber = true;
         }
         this.board.render(true);
+        this.trigger('eidogo-rendered');
     },
     auto: function() {
         var self = this;
@@ -1315,7 +1318,7 @@ eidogo.Player.prototype = {
             if (deleted) this.prependComment(t['position deleted']);
         }
 
-        if (updated) this.trigger();
+        if (updated) this.trigger('eidogo-update');
     },
     
     /**
@@ -2740,9 +2743,9 @@ eidogo.Player.prototype = {
             this.currentColor = this.currentColor === 'B' ? 'W' : 'B';
     },
     
-    trigger: function() {
+    trigger: function(name) {
         var e = document.createEvent('CustomEvent');
-        e.initCustomEvent('eidogo-update', false, true);
+        e.initCustomEvent(name, false, true);
         this.dom.player.dispatchEvent(e);
     }
 };
