@@ -2562,6 +2562,9 @@ continue;
 if(_116=="WR"||_116=="BR"){
 continue;
 }
+if((this.theme==="problem")&&(_116!=="SO"&&_116!=="GC")){
+continue;
+}
 val=_113[_116];
 if(_116=="DT"){
 var _117=_113[_116].split(/[\.-]/);
