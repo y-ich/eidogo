@@ -2748,7 +2748,7 @@ eidogo.Player.prototype = {
     
     trigger: function(name) {
         var e = document.createEvent('CustomEvent');
-        e.initCustomEvent(name, false, true);
+        e.initCustomEvent(name, false, true, null); // You need last null since IE doen't permit omission of arguments.
         this.dom.player.dispatchEvent(e);
     }
 };

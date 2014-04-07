@@ -3239,7 +3239,7 @@ this.currentColor=this.currentColor==="B"?"W":"B";
 }
 },trigger:function(name){
 var e=document.createEvent("CustomEvent");
-e.initCustomEvent(name,false,true);
+e.initCustomEvent(name,false,true,null);
 this.dom.player.dispatchEvent(e);
 }};
 })();
