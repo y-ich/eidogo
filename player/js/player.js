@@ -2745,7 +2745,11 @@ eidogo.Player.prototype = {
         if (this.goingBack)
             this.currentColor = this.currentColor === 'B' ? 'W' : 'B';
     },
-    
+
+    destroy: function() {
+        delete eidogo.players[this.uniq];
+    },
+
     trigger: function(name) {
         var e = document.createEvent('CustomEvent');
         e.initCustomEvent(name, false, true, null); // You need last null since IE doen't permit omission of arguments.
