@@ -2778,7 +2778,6 @@ this.prependComment(html,"comment-info");
 this.prependComment(_134=="B"?t["black to play"]:t["white to play"]);
 this.currentColor=this.problemColor=_134;
 },setMoveNumber:function(num){
-this.moveNumber=parseInt(num);
 },playMove:function(_136,_137,_138){
 _137=_137||this.currentColor;
 this.currentColor=(_137=="B"?"W":"B");

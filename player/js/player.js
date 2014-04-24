@@ -2078,7 +2078,7 @@ eidogo.Player.prototype = {
     },
 
     setMoveNumber: function(num) {
-        this.moveNumber = parseInt(num);
+        // this.moveNumber = parseInt(num); // move number is not a number for display
     },
 
     /**
