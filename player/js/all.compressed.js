@@ -1766,10 +1766,10 @@ this.dom.comments.innerHTML="";
 this.board.clearMarkers();
 this.moveNumber=this.cursor.getMoveNumber();
 }
-if(this.moveNumber<1){
+var _6a=this.cursor.node.getProperties();
+if(!(("MN" in _6a)||("FG" in _6a))&&this.moveNumber<1){
 this.resetCurrentColor();
 }
-var _6a=this.cursor.node.getProperties();
 for(var _6b in _6a){
 if(this.propertyHandlers[_6b]){
 (this.propertyHandlers[_6b]).apply(this,[this.cursor.node[_6b],_6b,_67]);
@@ -2778,7 +2778,7 @@ this.prependComment(html,"comment-info");
 this.prependComment(_134=="B"?t["black to play"]:t["white to play"]);
 this.currentColor=this.problemColor=_134;
 },setMoveNumber:function(num){
-this.moveNumber=num;
+this.moveNumber=parseInt(num);
 },playMove:function(_136,_137,_138){
 _137=_137||this.currentColor;
 this.currentColor=(_137=="B"?"W":"B");

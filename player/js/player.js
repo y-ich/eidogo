@@ -876,12 +876,13 @@ eidogo.Player.prototype = {
             this.moveNumber = this.cursor.getMoveNumber();
         }
     
-        if (this.moveNumber < 1) {
+        var props = this.cursor.node.getProperties();
+
+        if (!(('MN' in props) || ('FG' in props)) && this.moveNumber < 1) {
             this.resetCurrentColor();
         }
     
         // execute handlers for the appropriate properties
-        var props = this.cursor.node.getProperties();
         for (var propName in props) {
             if (this.propertyHandlers[propName]) {
                 (this.propertyHandlers[propName]).apply(
@@ -2077,7 +2078,7 @@ eidogo.Player.prototype = {
     },
 
     setMoveNumber: function(num) {
-        this.moveNumber = num;
+        this.moveNumber = parseInt(num);
     },
 
     /**
