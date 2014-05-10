@@ -2752,6 +2752,7 @@ eidogo.Player.prototype = {
     },
 
     trigger: function(name) {
+        if (!document.createEvent) return; // IE8 or before
         var e = document.createEvent('CustomEvent');
         e.initCustomEvent(name, false, true, null); // You need last null since IE doen't permit omission of arguments.
         this.dom.player.dispatchEvent(e);

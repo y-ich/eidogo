@@ -3239,6 +3239,9 @@ this.currentColor=this.currentColor==="B"?"W":"B";
 },destroy:function(){
 delete eidogo.players[this.uniq];
 },trigger:function(name){
+if(!document.createEvent){
+return;
+}
 var e=document.createEvent("CustomEvent");
 e.initCustomEvent(name,false,true,null);
 this.dom.player.dispatchEvent(e);
