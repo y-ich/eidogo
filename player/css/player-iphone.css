@@ -722,3 +722,62 @@
 .eidogo-player .footer {
     clear: both;
 }
+/****************************************************************************
+ *  Problem Theme
+****************************************************************************/
+.eidogo-player.theme-problem, .eidogo-player.theme-problem .board-container {
+    padding: 0;
+    margin: 0;
+    border: none;
+    float: none;
+}
+.eidogo-player.theme-problem {
+    width: 150px;
+    height: auto;
+    padding: 1px;
+    background: #666;
+}
+.eidogo-player.theme-problem .board-container {
+    width: auto;
+    height: auto;
+    min-height: 50px;
+    background: #555;
+}
+.eidogo-player.theme-problem .board-gutter {
+    padding: 0;
+}
+.eidogo-player.theme-problem .board.size7, .eidogo-player.theme-problem .board.size9,
+.eidogo-player.theme-problem .board.size13 {
+    margin: 0;
+}
+.eidogo-player.theme-problem .controls-container {
+    float: none;
+    width: auto;
+    background: #333;
+    padding: 0;
+}
+.eidogo-player.theme-problem .controls {
+    height: 19px;
+    padding: 0;
+}
+.eidogo-player.theme-problem .control {
+    margin: 0;
+    padding: 0;
+}
+.eidogo-player.theme-problem .comments {
+    float: none;
+    margin: 0;
+    background: #ccc;
+    border: none;
+    padding: 5px;
+    width: auto;
+    height: 35px;
+}
+.eidogo-player.theme-problem .controls .forward, 
+.eidogo-player.theme-problem .controls .last, .eidogo-player.theme-problem .controls .pass,
+.eidogo-player.theme-problem .controls .delete,
+.eidogo-player.theme-problem .controls .number,
+.eidogo-player.theme-problem .variations-container, .eidogo-player.theme-problem .nav-slider,
+.eidogo-player.theme-problem .move-number {
+    display: none;
+}
