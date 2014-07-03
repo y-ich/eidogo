@@ -1551,6 +1551,9 @@ _39[_3e[i]]="";
 }
 });
 for(var key in _39){
+if(key==="tt"){
+continue;
+}
 var pt=this.sgfCoordToPoint(key);
 if(l==null||pt.x<l){
 l=pt.x;

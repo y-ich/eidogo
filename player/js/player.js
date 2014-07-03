@@ -624,6 +624,7 @@ eidogo.Player.prototype = {
         });
         // nab the outermost points
         for (var key in points) {
+            if (key === 'tt') continue;
             var pt = this.sgfCoordToPoint(key);
             if (l == null || pt.x < l) l = pt.x;
             if (r == null || pt.x > r) r = pt.x;
