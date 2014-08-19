@@ -401,108 +401,125 @@ return _55;
 eidogo=window.eidogo||{};
 eidogo.i18n=eidogo.i18n||{"move":"Move","loading":"Loading","passed":"passed","resigned":"resigned","variations":"Variations","no variations":"none","tool":"Tool","view":"Jump to Move","play":"Play","region":"Select Region","add_b":"Black Stone","add_w":"White Stone","edit comment":"Edit Comment","edit game info":"Edit Game Info","done":"Done","triangle":"Triangle","square":"Square","circle":"Circle","x":"X","letter":"Letter","number":"Number","label":"Custom Label","dim":"Dim","clear":"Clear Marker","score":"Score","score est":"Score Estimate","search":"Search","search corner":"Corner Search","search center":"Center Search","region info":"Click and drag to select a region.","two stones":"Please select at least two stones to search for.","two edges":"For corner searches, your selection must touch two adjacent edges of the board.","no search url":"No search URL provided.","close search":"close search","matches found":"matches found.","show games":"Show pro games with this position","save to server":"Save to Server","download sgf":"Download SGF","multi-game sgf":"Multi-game SGF: ","next game":"Next Game","previous game":"Previous Game","end of variation":"End of variation","white":"White","white rank":"White rank","white team":"White team","black":"Black","black rank":"Black rank","black team":"Black team","captures":"captures","time left":"time left","you":"You","game":"Game","handicap":"Handicap","komi":"Komi","result":"Result","date":"Date","info":"Info","place":"Place","event":"Event","round":"Round","overtime":"Overtime","opening":"Openning","ruleset":"Ruleset","annotator":"Annotator","copyright":"Copyright","source":"Source","time limit":"Time limit","transcriber":"Transcriber","created with":"Created with","january":"January","february":"February","march":"March","april":"April","may":"May","june":"June","july":"July","august":"August","september":"September","october":"October","november":"November","december":"December","gw":"Good for White","vgw":"Very good for White","gb":"Good for Black","vgb":"Very good for Black","dm":"Even position","dmj":"Even position (joseki)","uc":"Unclear position","te":"Tesuji","bm":"Bad move","vbm":"Very bad move","do":"Doubtful move","it":"Interesting move","black to play":"Black to play","white to play":"White to play","ho":"Hotspot","confirm delete":"You've removed all properties from this position.\n\nDelete this position and all sub-positions?","position deleted":"Position deleted","dom error":"Error finding DOM container","error retrieving":"There was a problem retrieving the game data.","invalid data":"Received invalid game data","error board":"Error loading board container","unsaved changes":"There are unsaved changes in this game. You must save before you can permalink or download.","bad path":"Don't know how to get to path: ","gnugo thinking":"GNU Go is thinking..."};
 
+eidogo._propsToSgf=function(_1){
+if(!_1){
+return "";
+}
+var _2=";",_3,_4;
+for(_3 in _1){
+if(_1[_3] instanceof Array){
+_4=_1[_3].map(function(_5){
+return _5.toString().replace(/\]/g,"\\]");
+}).join("][");
+}else{
+_4=_1[_3].toString().replace(/\]/g,"\\]");
+}
+_2+=_3+"["+_4+"]";
+}
+return _2;
+};
 eidogo.gameNodeIdCounter=100000;
 eidogo.GameNode=function(){
 this.init.apply(this,arguments);
 };
-eidogo.GameNode.prototype={init:function(_1,_2,id){
+eidogo.GameNode.prototype={init:function(_6,_7,id){
 this._id=(typeof id!="undefined"?id:eidogo.gameNodeIdCounter++);
-this._parent=_1||null;
+this._parent=_6||null;
 this._children=[];
 this._preferredChild=0;
-if(_2){
-this.loadJson(_2);
+if(_7){
+this.loadJson(_7);
 }
-},pushProperty:function(_4,_5){
-if(this[_4]){
-if(!(this[_4] instanceof Array)){
-this[_4]=[this[_4]];
+},pushProperty:function(_9,_a){
+if(this[_9]){
+if(!(this[_9] instanceof Array)){
+this[_9]=[this[_9]];
 }
-if(!this[_4].contains(_5)){
-this[_4].push(_5);
+if(!this[_9].contains(_a)){
+this[_9].push(_a);
 }
 }else{
-this[_4]=_5;
+this[_9]=_a;
 }
-},hasPropertyValue:function(_6,_7){
-if(!this[_6]){
+},hasPropertyValue:function(_b,_c){
+if(!this[_b]){
 return false;
 }
-var _8=(this[_6] instanceof Array?this[_6]:[this[_6]]);
-return _8.contains(_7);
-},deletePropertyValue:function(_9,_a){
-var _b=(_a instanceof RegExp)?function(v){
-return _a.test(v);
+var _d=(this[_b] instanceof Array?this[_b]:[this[_b]]);
+return _d.contains(_c);
+},deletePropertyValue:function(_e,_f){
+var _10=(_f instanceof RegExp)?function(v){
+return _f.test(v);
 }:function(v){
-return _a==v;
+return _f==v;
 };
-var _e=(_9 instanceof Array?_9:[_9]);
-for(var i=0;_9=_e[i];i++){
-if(this[_9] instanceof Array){
-this[_9]=this[_9].filter(function(v){
-return !_b(v);
+var _13=(_e instanceof Array?_e:[_e]);
+for(var i=0;_e=_13[i];i++){
+if(this[_e] instanceof Array){
+this[_e]=this[_e].filter(function(v){
+return !_10(v);
 });
-if(!this[_9].length){
-delete this[_9];
+if(!this[_e].length){
+delete this[_e];
 }
 }else{
-if(_b(this.prop)){
-delete this[_9];
+if(_10(this.prop)){
+delete this[_e];
 }
 }
 }
-},loadJson:function(_11){
-var _12=[_11],_13=[this];
-var _14,_15;
+},loadJson:function(_16){
+var _17=[_16],_18=[this];
+var _19,_1a;
 var i,len;
-while(_12.length){
-_14=_12.pop();
-_15=_13.pop();
-_15.loadJsonNode(_14);
-len=(_14._children?_14._children.length:0);
+while(_17.length){
+_19=_17.pop();
+_1a=_18.pop();
+_1a.loadJsonNode(_19);
+len=(_19._children?_19._children.length:0);
 for(i=0;i<len;i++){
-_12.push(_14._children[i]);
-if(!_15._children[i]){
-_15._children[i]=new eidogo.GameNode(_15);
+_17.push(_19._children[i]);
+if(!_1a._children[i]){
+_1a._children[i]=new eidogo.GameNode(_1a);
 }
-_13.push(_15._children[i]);
+_18.push(_1a._children[i]);
 }
 }
-},loadJsonNode:function(_18){
-for(var _19 in _18){
-if(_19=="_id"){
-this[_19]=_18[_19].toString();
-eidogo.gameNodeIdCounter=Math.max(eidogo.gameNodeIdCounter,parseInt(_18[_19],10));
+},loadJsonNode:function(_1d){
+for(var _1e in _1d){
+if(_1e=="_id"){
+this[_1e]=_1d[_1e].toString();
+eidogo.gameNodeIdCounter=Math.max(eidogo.gameNodeIdCounter,parseInt(_1d[_1e],10));
 continue;
 }
-if(_19.charAt(0)!="_"){
-this[_19]=_18[_19];
+if(_1e.charAt(0)!="_"){
+this[_1e]=_1d[_1e];
 }
 }
-},appendChild:function(_1a){
-_1a._parent=this;
-this._children.push(_1a);
+},appendChild:function(_1f){
+_1f._parent=this;
+this._children.push(_1f);
 },getProperties:function(){
-var _1b={},_1c,_1d,_1e,_1f;
-for(_1c in this){
-isPrivate=(_1c.charAt(0)=="_");
-_1e=(typeof this[_1c]=="string");
-_1f=(this[_1c] instanceof Array);
-if(!isPrivate&&(_1e||_1f)){
-_1b[_1c]=this[_1c];
+var _20={},_21,_22,_23,_24;
+for(_21 in this){
+isPrivate=(_21.charAt(0)=="_");
+_23=(typeof this[_21]=="string");
+_24=(this[_21] instanceof Array);
+if(!isPrivate&&(_23||_24)){
+_20[_21]=this[_21];
 }
 }
-return _1b;
-},walk:function(fn,_21){
-var _22=[this];
-var _23;
+return _20;
+},walk:function(fn,_26){
+var _27=[this];
+var _28;
 var i,len;
-while(_22.length){
-_23=_22.pop();
-fn.call(_21||this,_23);
-len=(_23._children?_23._children.length:0);
+while(_27.length){
+_28=_27.pop();
+fn.call(_26||this,_28);
+len=(_28._children?_28._children.length:0);
 for(i=0;i<len;i++){
-_22.push(_23._children[i]);
+_27.push(_28._children[i]);
 }
 }
 },getMove:function(){
@@ -514,70 +531,53 @@ return this.B;
 }
 }
 return null;
-},emptyPoint:function(_26){
-var _27=this.getProperties();
-var _28=null;
-for(var _29 in _27){
-if(_29=="AW"||_29=="AB"||_29=="AE"){
-if(!(this[_29] instanceof Array)){
-this[_29]=[this[_29]];
+},emptyPoint:function(_2b){
+var _2c=this.getProperties();
+var _2d=null;
+for(var _2e in _2c){
+if(_2e=="AW"||_2e=="AB"||_2e=="AE"){
+if(!(this[_2e] instanceof Array)){
+this[_2e]=[this[_2e]];
 }
-this[_29]=this[_29].filter(function(val){
-if(val==_26){
-_28=val;
+this[_2e]=this[_2e].filter(function(val){
+if(val==_2b){
+_2d=val;
 return false;
 }
 return true;
 });
-if(!this[_29].length){
-delete this[_29];
+if(!this[_2e].length){
+delete this[_2e];
 }
 }else{
-if((_29=="B"||_29=="W")&&this[_29]==_26){
-_28=this[_29];
-delete this[_29];
+if((_2e=="B"||_2e=="W")&&this[_2e]==_2b){
+_2d=this[_2e];
+delete this[_2e];
 }
 }
 }
-return _28;
+return _2d;
 },getPosition:function(){
 if(!this._parent){
 return null;
 }
-var _2b=this._parent._children;
-for(var i=0;i<_2b.length;i++){
-if(_2b[i]._id==this._id){
+var _30=this._parent._children;
+for(var i=0;i<_30.length;i++){
+if(_30[i]._id==this._id){
 return i;
 }
 }
 return null;
 },toSgf:function(){
 var sgf=(this._parent?"(":"");
-var _2e=this;
-function propsToSgf(_2f){
-if(!_2f){
-return "";
+var _33=this;
+sgf+=eidogo._propsToSgf(_33.getProperties());
+while(_33._children.length==1){
+_33=_33._children[0];
+sgf+=eidogo._propsToSgf(_33.getProperties());
 }
-var sgf=";",key,val;
-for(key in _2f){
-if(_2f[key] instanceof Array){
-val=_2f[key].map(function(val){
-return val.toString().replace(/\]/g,"\\]");
-}).join("][");
-}else{
-val=_2f[key].toString().replace(/\]/g,"\\]");
-}
-sgf+=key+"["+val+"]";
-}
-return sgf;
-}
-sgf+=propsToSgf(_2e.getProperties());
-while(_2e._children.length==1){
-_2e=_2e._children[0];
-sgf+=propsToSgf(_2e.getProperties());
-}
-for(var i=0;i<_2e._children.length;i++){
-sgf+=_2e._children[i].toSgf();
+for(var i=0;i<_33._children.length;i++){
+sgf+=_33._children[i].toSgf();
 }
 sgf+=(this._parent?")":"");
 return sgf;
@@ -712,6 +712,22 @@ return this.node._children[0];
 while(cur.previous()){
 }
 return cur.node;
+},toSgf:function(){
+var sgf="";
+if(!this.node){
+return sgf;
+}
+var cur=new eidogo.GameCursor(this.node);
+if(!this.node._parent&&this.node._children.length){
+return sgf;
+}
+while(true){
+sgf=eidogo._propsToSgf(cur.node.getProperties())+sgf;
+if(!cur.previous()){
+break;
+}
+}
+return "("+sgf+")";
 }};
 
 eidogo.SgfParser=function(){
@@ -1633,7 +1649,7 @@ _4d();
 }
 };
 var _56=this.cursor.getGameRoot();
-var _57={sgf:_56.toSgf(),move:"est",size:_56.SZ||19,komi:_56.KM||0,mn:this.moveNumber+1};
+var _57={sgf:this.cursor.toSgf(),move:"est",size:_56.SZ||19,komi:_56.KM||0,mn:this.moveNumber+1};
 if(_4c){
 _57.method=_4c;
 }

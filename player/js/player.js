@@ -697,7 +697,7 @@ eidogo.Player.prototype = {
         }
         var root = this.cursor.getGameRoot();
         var params = {
-            sgf: root.toSgf(),
+            sgf: this.cursor.toSgf(),
             move: 'est',
             size: root.SZ || 19,
             komi: root.KM || 0,

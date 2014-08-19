@@ -7,6 +7,22 @@
  * This file contains GameNode and GameCursor.
  */
 
+eidogo._propsToSgf = function (props) {
+    if (!props) return "";
+    var sgf = ";", key, val;
+    for (key in props) {
+        if (props[key] instanceof Array) {
+            val = props[key].map(function (val) {
+                return val.toString().replace(/\]/g, "\\]");
+            }).join("][");
+        } else {
+            val = props[key].toString().replace(/\]/g, "\\]");
+        }
+        sgf += key + "[" + val  + "]";
+    }
+    return sgf;
+}
+
 /**
  * For uniquely identifying nodes. Should work even if we have
  * multiple Player instantiations. Setting this to 100000 is kind of a hack
@@ -211,28 +227,12 @@ eidogo.GameNode.prototype = {
         var sgf = (this._parent ? "(" : "");
         var node = this;
         
-        function propsToSgf(props) {
-            if (!props) return "";
-            var sgf = ";", key, val;
-            for (key in props) {
-                if (props[key] instanceof Array) {
-                    val = props[key].map(function (val) {
-                        return val.toString().replace(/\]/g, "\\]");
-                    }).join("][");
-                } else {
-                    val = props[key].toString().replace(/\]/g, "\\]");
-                }
-                sgf += key + "[" + val  + "]";
-            }
-            return sgf;
-        }
-        
-        sgf += propsToSgf(node.getProperties());
+        sgf += eidogo._propsToSgf(node.getProperties());
         
         // Follow main line until we get to a node with multiple variations
         while (node._children.length == 1) {
             node = node._children[0];
-            sgf += propsToSgf(node.getProperties());
+            sgf += eidogo._propsToSgf(node.getProperties());
         }
         
         // Variations
@@ -380,5 +380,17 @@ eidogo.GameCursor.prototype = {
             return this.node._children[0];
         while (cur.previous()) {};
         return cur.node;
+    },
+    toSgf: function() {
+        var sgf = '';
+        if (!this.node) return sgf;
+        var cur = new eidogo.GameCursor(this.node);
+        if (!this.node._parent && this.node._children.length)
+            return sgf
+        while (true) {
+            sgf = eidogo._propsToSgf(cur.node.getProperties()) + sgf
+            if (!cur.previous()) break;
+        };
+        return '(' + sgf + ')';
     }
 };
