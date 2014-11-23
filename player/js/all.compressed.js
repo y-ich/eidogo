@@ -990,7 +990,6 @@ var _2c=document.getElementById(this.uniq+"stone-"+pt.x+"-"+pt.y);
 if(_2c){
 _2c.parentNode.removeChild(_2c);
 }
-if(_2b!="empty"){
 var div=document.createElement("div");
 div.id=this.uniq+"stone-"+pt.x+"-"+pt.y;
 div.className="point stone "+_2b;
@@ -1016,8 +1015,6 @@ catch(e){
 }
 this.domNode.appendChild(div);
 return div;
-}
-return null;
 },renderMarker:function(pt,_30){
 if(this.renderCache.markers[pt.x][pt.y]){
 var _31=document.getElementById(this.uniq+"marker-"+pt.x+"-"+pt.y);

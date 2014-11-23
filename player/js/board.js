@@ -256,30 +256,27 @@ eidogo.BoardRendererHtml.prototype = {
         if (stone) {
             stone.parentNode.removeChild(stone);
         }
-        if (color != "empty") {
-            var div = document.createElement("div");
-            div.id = this.uniq + "stone-" + pt.x + "-" + pt.y;
-            div.className = "point stone " + color;
-            try {
-                div.style.left = (pt.x * this.pointWidth + this.margin - this.scrollX) + "px";
-                div.style.top = (pt.y * this.pointHeight + this.margin - this.scrollY) + "px";
+        var div = document.createElement("div");
+        div.id = this.uniq + "stone-" + pt.x + "-" + pt.y;
+        div.className = "point stone " + color;
+        try {
+            div.style.left = (pt.x * this.pointWidth + this.margin - this.scrollX) + "px";
+            div.style.top = (pt.y * this.pointHeight + this.margin - this.scrollY) + "px";
 
-                // show move number
-                if(this.player.prefs.showMoveNumber){
-                    var number = this.player.cursor.getMoveNumberFromCoord(pt);
-                    if(number != 0){
-                        if(color == "black") div.style.color = "white";
-                        if(color == "white") div.style.color = "black";
-                        div.style.textAlign="center";
-                        div.style.lineHeight="19px";
-                        div.innerHTML = number;
-                    }
+            // show move number
+            if(this.player.prefs.showMoveNumber){
+                var number = this.player.cursor.getMoveNumberFromCoord(pt);
+                if(number != 0){
+                    if(color == "black") div.style.color = "white";
+                    if(color == "white") div.style.color = "black";
+                    div.style.textAlign="center";
+                    div.style.lineHeight="19px";
+                    div.innerHTML = number;
                 }
-            } catch (e) {}
-            this.domNode.appendChild(div);
-            return div;
-        }
-        return null;
+            }
+        } catch (e) {}
+        this.domNode.appendChild(div);
+        return div;
     },
     renderMarker: function(pt, type) {
         if (this.renderCache.markers[pt.x][pt.y]) {
