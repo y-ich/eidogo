@@ -1188,7 +1188,7 @@ eidogo.Player.prototype = {
      * Called by the board renderer upon mouse up, with appropriate coordinate
     **/
     handleBoardMouseUp: function(x, y, e) {
-        var updated = false;
+        var updated = false, _self = this;
 
         if (this.domLoading) return;
         
@@ -1196,6 +1196,10 @@ eidogo.Player.prototype = {
         
         var coord = this.pointToSgfCoord({x: x, y: y});
         
+        setTimeout(function(){
+            _self.trigger('eidogo-board-clicked', { coord: coord });
+        }, 0);
+
         // click on a variation?
         if (this.mode == "view" || this.mode == "play") {
             for (var i = 0; i < this.variations.length; i++) {
@@ -2752,10 +2756,10 @@ eidogo.Player.prototype = {
         delete eidogo.players[this.uniq];
     },
 
-    trigger: function(name) {
+    trigger: function(name, detail) {
         if (!document.createEvent) return; // IE8 or before
         var e = document.createEvent('CustomEvent');
-        e.initCustomEvent(name, false, true, null); // You need last null since IE doen't permit omission of arguments.
+        e.initCustomEvent(name, false, true, detail); // You need last null since IE doen't permit omission of arguments.
         this.dom.player.dispatchEvent(e);
     }
 };
