@@ -210,11 +210,11 @@ eidogo.BoardRendererHtml.prototype = {
         this.renderMarker({x:0,y:0}, "current"); // just for image caching
         this.clear();
         this.margin = (this.domNode.offsetWidth - (this.boardSize * this.pointWidth)) / 2;
-        
+
         // needed to accommodate IE's broken layout engine
         this.scrollX = 0;
         this.scrollY = 0;
-        
+
         if (crop) {
             this.crop(crop);
             if (eidogo.browser.ie) {
@@ -226,14 +226,14 @@ eidogo.BoardRendererHtml.prototype = {
                 }
             }
         }
-        
+
         // add the search region selection box for later use
         this.dom = {};
         this.dom.searchRegion = document.createElement('div');
         this.dom.searchRegion.id = this.uniq + "search-region";
         this.dom.searchRegion.className = "search-region";
         this.domNode.appendChild(this.dom.searchRegion);
-        
+
         eidogo.util.addEvent(this.domNode, "mousemove", this.handleHover, this, true);
         eidogo.util.addEvent(this.domNode, "mousedown", this.handleMouseDown, this, true);
         eidogo.util.addEvent(this.domNode, "mouseup", this.handleMouseUp, this, true);
@@ -246,7 +246,7 @@ eidogo.BoardRendererHtml.prototype = {
         eidogo.util.show(this.dom.searchRegion);
     },
     hideRegion: function() {
-        eidogo.util.hide(this.dom.searchRegion);  
+        eidogo.util.hide(this.dom.searchRegion);
     },
     clear: function() {
         this.domNode.innerHTML = "";
@@ -285,7 +285,7 @@ eidogo.BoardRendererHtml.prototype = {
                 marker.parentNode.removeChild(marker);
             }
         }
-        if (type == "empty" || !type) { 
+        if (type == "empty" || !type) {
             this.renderCache.markers[pt.x][pt.y] = 0;
             return null;
         }
@@ -345,14 +345,14 @@ eidogo.BoardRendererHtml.prototype = {
     **/
     getXY: function(e) {
         var clickXY = eidogo.util.getElClickXY(e, this.domNode);
-        
+
         var m = this.margin;
         var pw = this.pointWidth;
         var ph = this.pointHeight;
-        
+
         var x = Math.round((clickXY[0] - m - (pw / 2)) / pw);
         var y = Math.round((clickXY[1] - m - (ph / 2)) / ph);
-    
+
         return [x, y, clickXY[0], clickXY[1]];
     },
     crop: function(crop) {
@@ -396,7 +396,7 @@ eidogo.BoardRendererFlash.prototype = {
         var initBoard = function() {
             swf = eidogo.util.byId(swfId);
             if (!swf || !swf.init) {
-                if (elapsed > 2000) {            
+                if (elapsed > 2000) {
                     throw "Error initializing board";
                     return;
                 }

@@ -2069,6 +2069,9 @@ return;
 }
 }
 if(this.mode=="view"){
+if(this.board.getStone({x:x,y:y})==this.board.EMPTY){
+return;
+}
 var _b2=this.cursor.getGameRoot(),_b3=[0,_b2.getPosition()],mn=0,_b5=_b2._children[0];
 while(_b5){
 if(_b5.getMove()==_af){
