@@ -4,10 +4,10 @@ eidogo.i18n = eidogo.i18n || {
     'loading':          'Loading',
     'passed':           'passed',
     'resigned':         'resigned',
-    
+
     'variations':       'Variations',
     'no variations':    'none',
-    
+
     'tool':             'Tool',
     'view':             'Jump to Move',
     'play':             'Play',
@@ -55,7 +55,7 @@ eidogo.i18n = eidogo.i18n || {
 
     'captures':         'captures',
     'time left':        'time left',
-    
+
     'you':              'You',
 
     'game':             'Game',
@@ -89,7 +89,7 @@ eidogo.i18n = eidogo.i18n || {
     'october':          'October',
     'november':         'November',
     'december':         'December',
-    
+
     'gw':               'Good for White',
     'vgw':              'Very good for White',
     'gb':               'Good for Black',
@@ -105,7 +105,8 @@ eidogo.i18n = eidogo.i18n || {
     'black to play':    'Black to play',
     'white to play':    'White to play',
     'ho':               'Hotspot',
-    
+    'estimated score':  '%player% leads territory by %value%.',
+
     'confirm delete':   'You\'ve removed all properties from this position.\n\nDelete this position and all sub-positions?',
     'position deleted': 'Position deleted',
 
@@ -115,6 +116,6 @@ eidogo.i18n = eidogo.i18n || {
     'error board':      'Error loading board container',
     'unsaved changes':  'There are unsaved changes in this game. You must save before you can permalink or download.',
     'bad path':         'Don\'t know how to get to path: ',
-    
+
     'gnugo thinking':   'GNU Go is thinking...'
 }

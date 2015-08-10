@@ -2179,6 +2179,14 @@ eidogo.Player.prototype = {
             case 'DO': msg = t['do']; break;
             case 'IT': msg = t['it']; break;
             case 'HO': msg = t['ho']; break;
+            case 'V':
+                if (value == 0)
+                    msg = t['dm'];
+                else if (value > 0)
+                    msg = t['estimated score'].replace('%player%', t['black']).replace('%value%', value);
+                else
+                    msg = t['estimated score'].replace('%player%', t['white']).replace('%value%', - value);
+                break;
         }
         this.prependComment(msg);
     },

@@ -4,10 +4,10 @@ eidogo.i18n = eidogo.i18n || {
     'loading':          'Cargando',
     'passed':           'Pasar',
     'resigned':         'abandono',
-    
+
     'variations':       'Variantes',
     'no variations':    'ninguna',
-    
+
     'tool':             'Herramienta',
     'view':             'Saltar a jugada',
     'play':             'Jugar',
@@ -55,7 +55,7 @@ eidogo.i18n = eidogo.i18n || {
 
     'captures':         'capturas',
     'time left':        'tiempo restante',
-    
+
     'you':              'Tú',
 
     'game':             'Partida',
@@ -89,7 +89,7 @@ eidogo.i18n = eidogo.i18n || {
     'october':          'Octubre',
     'november':         'Noviembre',
     'december':         'Diciembre',
-    
+
     'gw':               'Bueno para Blanco',
     'vgw':              'Muy bueno para Blanco',
     'gb':               'Bueno para Negro',
@@ -105,6 +105,7 @@ eidogo.i18n = eidogo.i18n || {
     'black to play':    'Negro juega',
     'white to play':    'Blanco juega',
     'ho':               'Hotspot',
+    'estimated score':  '%player% leads territory by %value%.',
     
     'confirm delete':   'Has borrado todas las propiedades de esta posición. ¿Borrar posición y todas sus variantes?',
     'position deleted': 'Posición borrada',
@@ -115,6 +116,6 @@ eidogo.i18n = eidogo.i18n || {
     'error board':      'Error al cargar contenedor del tablero',
     'unsaved changes':  'Hay cambios sin guardar en esta partida. Debes guardarlos antes de hacer un permalink o descargar la partida.',
     'bad path':         'No se encuentra la ruta: ',
-    
+
     'gnugo thinking':   'GNU Go está pensando...'
 }
