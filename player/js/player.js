@@ -2180,6 +2180,7 @@ eidogo.Player.prototype = {
             case 'IT': msg = t['it']; break;
             case 'HO': msg = t['ho']; break;
             case 'V':
+                value = parseFloat(value);
                 if (value == 0)
                     msg = t['dm'];
                 else if (value > 0)

@@ -2910,6 +2910,7 @@ case "HO":
 msg=t["ho"];
 break;
 case "V":
+_147=parseFloat(_147);
 if(_147==0){
 msg=t["dm"];
 }else{
