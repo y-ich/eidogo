@@ -1,4 +1,3 @@
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=shift_jis
 if(typeof window.CustomEvent==="undefined"){
 (function(){
 function CustomEvent(_1,_2){
@@ -12,7 +11,6 @@ window.CustomEvent=CustomEvent;
 })();
 }
 
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=shift_jis
 Array.prototype.contains=function(_1){
 if(Array.prototype.indexOf){
 return this.indexOf(_1)!=-1;
@@ -151,10 +149,8 @@ return _28.apply(_27,_29.concat(Array.from(arguments)));
 };
 };
 
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=shift_jis
 eidogo=window.eidogo||{};
 
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=shift_jis
 (function(){
 var ua=navigator.userAgent.toLowerCase();
 var _2=(ua.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/)||[])[1];
@@ -402,11 +398,9 @@ return _55;
 }};
 })();
 
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=shift_jis
 eidogo=window.eidogo||{};
 eidogo.i18n=eidogo.i18n||{"move":"Move","loading":"Loading","passed":"passed","resigned":"resigned","variations":"Variations","no variations":"none","tool":"Tool","view":"Jump to Move","play":"Play","region":"Select Region","add_b":"Black Stone","add_w":"White Stone","edit comment":"Edit Comment","edit game info":"Edit Game Info","done":"Done","triangle":"Triangle","square":"Square","circle":"Circle","x":"X","letter":"Letter","number":"Number","label":"Custom Label","dim":"Dim","clear":"Clear Marker","score":"Score","score est":"Score Estimate","search":"Search","search corner":"Corner Search","search center":"Center Search","region info":"Click and drag to select a region.","two stones":"Please select at least two stones to search for.","two edges":"For corner searches, your selection must touch two adjacent edges of the board.","no search url":"No search URL provided.","close search":"close search","matches found":"matches found.","show games":"Show pro games with this position","save to server":"Save to Server","download sgf":"Download SGF","multi-game sgf":"Multi-game SGF: ","next game":"Next Game","previous game":"Previous Game","end of variation":"End of variation","white":"White","white rank":"White rank","white team":"White team","black":"Black","black rank":"Black rank","black team":"Black team","captures":"captures","time left":"time left","you":"You","game":"Game","handicap":"Handicap","komi":"Komi","result":"Result","date":"Date","info":"Info","place":"Place","event":"Event","round":"Round","overtime":"Overtime","opening":"Openning","ruleset":"Ruleset","annotator":"Annotator","copyright":"Copyright","source":"Source","time limit":"Time limit","transcriber":"Transcriber","created with":"Created with","january":"January","february":"February","march":"March","april":"April","may":"May","june":"June","july":"July","august":"August","september":"September","october":"October","november":"November","december":"December","gw":"Good for White","vgw":"Very good for White","gb":"Good for Black","vgb":"Very good for Black","dm":"Even position","dmj":"Even position (joseki)","uc":"Unclear position","te":"Tesuji","bm":"Bad move","vbm":"Very bad move","do":"Doubtful move","it":"Interesting move","black to play":"Black to play","white to play":"White to play","ho":"Hotspot","estimated score":"%player% leads territory by %value%.","confirm delete":"You've removed all properties from this position.\n\nDelete this position and all sub-positions?","position deleted":"Position deleted","dom error":"Error finding DOM container","error retrieving":"There was a problem retrieving the game data.","invalid data":"Received invalid game data","error board":"Error loading board container","unsaved changes":"There are unsaved changes in this game. You must save before you can permalink or download.","bad path":"Don't know how to get to path: ","gnugo thinking":"GNU Go is thinking..."};
 
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=shift_jis
 eidogo._propsToSgf=function(_1){
 if(!_1){
 return "";
@@ -736,7 +730,6 @@ break;
 return "("+sgf+")";
 }};
 
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=shift_jis
 eidogo.SgfParser=function(){
 this.init.apply(this,arguments);
 };
@@ -823,7 +816,6 @@ return _7;
 return this.sgf.charAt(this.index);
 }};
 
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=shift_jis
 eidogo.Board=function(){
 this.init.apply(this,arguments);
 };
@@ -1190,7 +1182,6 @@ this.domNode.innerHTML="<pre>"+this.content+"</pre>";
 },renderMarker:function(pt,_5d){
 }};
 
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=shift_jis
 eidogo.Rules=function(_1){
 this.init(_1);
 };
@@ -1258,7 +1249,6 @@ return 1;
 return 0;
 }};
 
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=shift_jis
 (function(){
 var t=eidogo.i18n,_2=eidogo.util.byId,_3=eidogo.util.ajax,_4=eidogo.util.addEvent,_5=eidogo.util.onClick,_6=eidogo.util.getElClickXY,_7=eidogo.util.stopEvent,_8=eidogo.util.addClass,_9=eidogo.util.removeClass,_a=eidogo.util.show,_b=eidogo.util.hide,_c=eidogo.browser.moz,_d=eidogo.util.getPlayerPath();
 eidogo.players=eidogo.players||{};
@@ -3291,7 +3281,6 @@ this.dom.player.dispatchEvent(e);
 }};
 })();
 
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=shift_jis
 (function(){
 var _1=window.eidogoConfig||{};
 var _2={theme:"problem",problemMode:true,markVariations:false,markNext:false,shrinkToFit:true};
