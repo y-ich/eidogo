@@ -13,7 +13,7 @@
  * 'eidogo-player-problem'
 **/
 (function() {
-    
+
     var autoCfg = window.eidogoConfig || {};
     var problemCfg = {
         theme:          "problem",
@@ -21,16 +21,16 @@
         markVariations: false,
         markNext:       false,
         shrinkToFit:    true};
-    var scriptPath = eidogo.util.getPlayerPath();    
+    var scriptPath = eidogo.util.getPlayerPath();
     var path = eidogo.playerPath = (autoCfg.playerPath || scriptPath || 'player').replace(/\/$/, "");
-    
+
     if (!autoCfg.skipCss) {
         eidogo.util.addStyleSheet(path + '/css/player.css');
         if (eidogo.browser.ie && parseInt(eidogo.browser.ver, 10) <= 6) {
             eidogo.util.addStyleSheet(path + '/css/player-ie6.css');
         }
     }
-    
+
     eidogo.util.addEvent(window, "load", function() {
         eidogo.autoPlayers = [];
         var els = [];
@@ -57,14 +57,14 @@
                 cfg.sgf = el.innerHTML;
             var shrink = el.getAttribute('shrink');
             if (shrink)
-                cfg.shrinkToFit = (shrink == "no" ? false : true);            
+                cfg.shrinkToFit = (shrink == "no" ? false : true);
             el.innerHTML = "";
             eidogo.util.show(el);
-            
+
             var player = new eidogo.Player(cfg);
             eidogo.autoPlayers.push(player);
         }
-        
+
     });
-    
+
 })();

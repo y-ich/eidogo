@@ -24,27 +24,30 @@
         enableShortcuts: false
     };
     </script>
-    
+
     <!--
         Optional international support (see player/i18n/ folder)
     -->
     <!-- <script type="text/javascript" src="player/i18n/fr.js"></script> -->
-    
+
     <!--
         Necessary script
     -->
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../HTML-GL/dist/htmlgl.min.js"></script>
+    <script type="text/javascript" src="../HTML-GL/dist/htmlgl-effects.min.js"></script>
     <script type="text/javascript" src="player/js/all.compressed.js"></script>
-    
+
 </head>
 <body>
-	
+
     <h1>EidoGo Player Simple Example</h1>
 
     <p>Example 1: Load an SGF from a URL within the same domain</p>
     <div class="eidogo-player-auto" sgf="sgf/blood_vomit.sgf"></div>
 
     <p>Example 2: Load raw SGF data</p>
-    <div class="eidogo-player-auto">
+    <div id="gl" class="eidogo-player-auto">
         (;FF[4]PB[Hinaya Rippo]HA[5]PW[Honinbo Dosaku]KM[0]RE[W+R]
         AB[dd][dp][jj][pd][pp];W[qf];B[mc];W[qn];B[ql];W[on];B[rp];W[cn]
         ;B[gq];W[cf];B[ch];W[ef];B[bd];W[cj];B[bf];W[ce];B[be];W[cg]
@@ -63,6 +66,10 @@
         ;B[fo];W[fp];B[ep];W[co];B[fq];W[hp];B[hq];W[ip];B[jq];W[om]
         ;B[ol];W[mo])
     </div>
-
+    <script type="text/javascript">
+    setTimeout(function(){
+        $('#gl').htmlgl();
+    }, 10000);
+    </script>
 </body>
 </html>

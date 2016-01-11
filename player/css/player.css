@@ -1006,7 +1006,11 @@
     width: auto;
     height: 35px;
 }
-.eidogo-player.theme-problem .controls .forward, 
+.eidogo-player.theme-problem .nav-tree-container {
+    float: none;
+    width: auto;
+}
+.eidogo-player.theme-problem .controls .forward,
 .eidogo-player.theme-problem .controls .last, .eidogo-player.theme-problem .controls .pass,
 .eidogo-player.theme-problem .controls .delete,
 .eidogo-player.theme-problem .controls .number,
