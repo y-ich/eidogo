@@ -1,13 +1,13 @@
 eidogo = window.eidogo || {};
-eidogo.i18n = eidogo.i18n || {
+eidogo.i18n = {
     'move':             'Coup',
     'loading':          'Chargement',
     'passed':           'passe',
     'resigned':         'abandonne',
-    
+
     'variations':       'Variations',
     'no variations':    'aucune',
-    
+
     'tool':             'Outil',
     'view':             'Aller au Coup',
     'play':             'Joue',
@@ -55,7 +55,7 @@ eidogo.i18n = eidogo.i18n || {
 
     'captures':         'captures',
     'time left':        'temps restant',
-    
+
     'you':              'Vous',
 
     'game':             'Partie',
@@ -89,7 +89,7 @@ eidogo.i18n = eidogo.i18n || {
     'october':          'Octobre',
     'november':         'Novembre',
     'december':         'Décembre',
-    
+
     'gw':               'Bon pour Blanc',
     'vgw':              'Très bon pour Blanc',
     'gb':               'Bon pour Noir',
@@ -105,7 +105,7 @@ eidogo.i18n = eidogo.i18n || {
     'black to play':    'à Noir de jouer',
     'white to play':    'à Blanc de jouer',
     'ho':               'Point chaud',
-    
+
     'confirm delete':   'Vous avez supprimé toutes les propriétés de cette position. Supprimer cette position et ses variantes?',
     'position deleted': 'Position supprimée',
 
@@ -115,6 +115,6 @@ eidogo.i18n = eidogo.i18n || {
     'error board':      'Erreur de chargement du plateau',
     'unsaved changes':  'Changements non-sauvegardés dans cette partie. Vous devez sauvegarder avant de créér un lien ou de télécharger.',
     'bad path':         'Chemin invalide: ',
-    
+
     'gnugo thinking':   'GNU Go is thinking...'
 }

@@ -1,13 +1,13 @@
 eidogo = window.eidogo || {};
-eidogo.i18n = eidogo.i18n || {
+eidogo.i18n = {
     'move':             'Jogada',
     'loading':          'Carregando',
     'passed':           'Passar',
     'resigned':         'abandono',
-    
+
     'variations':       'Variantes',
     'no variations':    'nenhuma variação',
-    
+
     'tool':             'ferramentas',
     'view':             'Saltar a jogada',
     'play':             'Jogar',
@@ -55,7 +55,7 @@ eidogo.i18n = eidogo.i18n || {
 
     'captures':         'capturas',
     'time left':        'tempo restante',
-    
+
     'you':              'Tu',
 
     'game':             'Partida',
@@ -89,7 +89,7 @@ eidogo.i18n = eidogo.i18n || {
     'october':          'Octubro',
     'november':         'Novembro',
     'december':         'Dezembro',
-    
+
     'gw':               'Bom para Branco',
     'vgw':              'Muito bom para Branco',
     'gb':               'Bom para Preto',
@@ -105,7 +105,7 @@ eidogo.i18n = eidogo.i18n || {
     'black to play':    'Preto a jogar',
     'white to play':    'Branco a jogar',
     'ho':               'Hotspot',
-    
+
     'confirm delete':   'Removeste todas as propriedades desta posição. Desejas mesmo apagar esta posição e todas as suas variações?',
     'position deleted': 'Posição apagada',
 
@@ -115,6 +115,6 @@ eidogo.i18n = eidogo.i18n || {
     'error board':      'Erro a carregar o tabuleiro',
     'unsaved changes':  'Não salvou as alterações feitas.',
     'bad path':         'Directório não encontrado..: ',
-    
+
     'gnugo thinking':   'GNUGo está a pensar...'
 }

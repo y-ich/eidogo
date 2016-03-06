@@ -61,7 +61,7 @@ eidogo.Player.prototype = {
             byId(cfg.container) : cfg.container);
 
         if (!this.dom.container) {
-            alert(t['dom error']);
+            alert(eidogo.i18n['dom error']);
             return;
         }
 
@@ -136,46 +136,46 @@ eidogo.Player.prototype = {
         };
 
         this.infoLabels = {
-            GN: t['game'],
-            PW: t['white'],
-            WR: t['white rank'],
-            WT: t['white team'],
-            PB: t['black'],
-            BR: t['black rank'],
-            BT: t['black team'],
-            HA: t['handicap'],
-            KM: t['komi'],
-            RE: t['result'],
-            DT: t['date'],
-            GC: t['info'],
-            PC: t['place'],
-            EV: t['event'],
-            RO: t['round'],
-            OT: t['overtime'],
-            ON: t['opening'],
-            RU: t['ruleset'],
-            AN: t['annotator'],
-            CP: t['copyright'],
-            SO: t['source'],
-            TM: t['time limit'],
-            US: t['transcriber'],
-            AP: t['created with']
+            GN: eidogo.i18n['game'],
+            PW: eidogo.i18n['white'],
+            WR: eidogo.i18n['white rank'],
+            WT: eidogo.i18n['white team'],
+            PB: eidogo.i18n['black'],
+            BR: eidogo.i18n['black rank'],
+            BT: eidogo.i18n['black team'],
+            HA: eidogo.i18n['handicap'],
+            KM: eidogo.i18n['komi'],
+            RE: eidogo.i18n['result'],
+            DT: eidogo.i18n['date'],
+            GC: eidogo.i18n['info'],
+            PC: eidogo.i18n['place'],
+            EV: eidogo.i18n['event'],
+            RO: eidogo.i18n['round'],
+            OT: eidogo.i18n['overtime'],
+            ON: eidogo.i18n['opening'],
+            RU: eidogo.i18n['ruleset'],
+            AN: eidogo.i18n['annotator'],
+            CP: eidogo.i18n['copyright'],
+            SO: eidogo.i18n['source'],
+            TM: eidogo.i18n['time limit'],
+            US: eidogo.i18n['transcriber'],
+            AP: eidogo.i18n['created with']
             // FF, GM, TM
         };
 
         this.months = [
-            t['january'],
-            t['february'],
-            t['march'],
-            t['april'],
-            t['may'],
-            t['june'],
-            t['july'],
-            t['august'],
-            t['september'],
-            t['october'],
-            t['november'],
-            t['december']
+            eidogo.i18n['january'],
+            eidogo.i18n['february'],
+            eidogo.i18n['march'],
+            eidogo.i18n['april'],
+            eidogo.i18n['may'],
+            eidogo.i18n['june'],
+            eidogo.i18n['july'],
+            eidogo.i18n['august'],
+            eidogo.i18n['september'],
+            eidogo.i18n['october'],
+            eidogo.i18n['november'],
+            eidogo.i18n['december']
         ];
 
         // UI theme
@@ -388,8 +388,8 @@ eidogo.Player.prototype = {
                 this.opponentColor = cfg.opponentColor == "B" ? cfg.opponentColor : "W";
                 this.opponentLevel = cfg.opponentLevel || 7;
                 var root = blankGame._children[0];
-                root.PW = this.opponentColor == "B" ? t['you'] : "GNU Go";
-                root.PB = this.opponentColor == "B" ? "GNU Go" : t['you'];
+                root.PW = this.opponentColor == "B" ? eidogo.i18n['you'] : "GNU Go";
+                root.PB = this.opponentColor == "B" ? "GNU Go" : eidogo.i18n['you'];
                 root.HA = parseInt(cfg.handicap, 10) || 0;
                 if (root.HA) {
                     var handiCoords = {
@@ -514,12 +514,12 @@ eidogo.Player.prototype = {
                 this.load(data, target);
                 completeFn && completeFn();
             } else {
-                this.croak(t['invalid data']);
+                this.croak(eidogo.i18n['invalid data']);
             }
         }
 
         var failure = function(req) {
-            this.croak(t['error retrieving']);
+            this.croak(eidogo.i18n['error retrieving']);
         }
 
         ajax('get', url, null, success, failure, this, 30000);
@@ -592,7 +592,7 @@ eidogo.Player.prototype = {
             this.board = new eidogo.Board(renderer, size);
         } catch (e) {
             if (e == "No DOM container") {
-                this.croak(t['error board']);
+                this.croak(eidogo.i18n['error board']);
                 return;
             }
         }
@@ -654,13 +654,13 @@ eidogo.Player.prototype = {
      * move to play.
     **/
     fetchOpponentMove: function() {
-        this.nowLoading(t['gnugo thinking']);
+        this.nowLoading(eidogo.i18n['gnugo thinking']);
         var success = function(req) {
             this.doneLoading();
             this.createMove(req.responseText);
         }
         var failure = function(req) {
-            this.croak(t['error retrieving']);
+            this.croak(eidogo.i18n['error retrieving']);
         }
         var root = this.cursor.getGameRoot();
         var params = {
@@ -677,7 +677,7 @@ eidogo.Player.prototype = {
      * Thanks to Sorin Gherman for the idea and for getting this started!
     **/
     fetchScoreEstimate: function(method, callback) {
-        this.nowLoading(t['gnugo thinking']);
+        this.nowLoading(eidogo.i18n['gnugo thinking']);
         var success = function(req) {
             this.doneLoading();
             var result = req.responseText.split("\n");
@@ -692,7 +692,7 @@ eidogo.Player.prototype = {
             this.trigger('eidogo-rendered');
         }
         var failure = function(req) {
-            this.croak(t['error retrieving']);
+            this.croak(eidogo.i18n['error retrieving']);
             if (callback) callback();
         }
         var root = this.cursor.getGameRoot();
@@ -719,7 +719,7 @@ eidogo.Player.prototype = {
             } else if (!this.cursor.hasNext()) {
                 // not sure if it's safe to say "WRONG" -- that would work for
                 // goproblems.com SGFs but I don't know about others
-                this.prependComment(t['end of variation']);
+                this.prependComment(eidogo.i18n['end of variation']);
             }
         }.bind(this), 200);
     },
@@ -749,7 +749,7 @@ eidogo.Player.prototype = {
 
         // Not a path?
         if (!(path instanceof Array) || !path.length) {
-            alert(t['bad path'] + " " + path);
+            alert(eidogo.i18n['bad path'] + " " + path);
             return;
         }
 
@@ -934,7 +934,7 @@ eidogo.Player.prototype = {
                 var moveNum = this.cursor.getMoveNumber();
                 if (moveNum > 1)
                     this.cursor.node.C = "<a id='cont-search' href='#'>" +
-                        t['show games'] + "</a>" + (this.cursor.node.C || "");
+                        eidogo.i18n['show games'] + "</a>" + (this.cursor.node.C || "");
                 this.refresh();
                 if (completeFn && typeof completeFn == "function")
                     completeFn();
@@ -969,7 +969,7 @@ eidogo.Player.prototype = {
             a: "continuations",
             t: (new Date()).getTime()};
         var failure = function(req) {
-            this.croak(t['error retrieving']);
+            this.croak(eidogo.i18n['error retrieving']);
         }
         var success = function(req) {
             if (!req.responseText || req.responseText == "NONE") {
@@ -981,7 +981,7 @@ eidogo.Player.prototype = {
             }
             var contBranch = {LB: [], _children: []}, contNode;
             contBranch.C = moveNum > 1 ? "<a id='cont-search' href='#'>" +
-                t['show games'] + "</a>" : "";
+                eidogo.i18n['show games'] + "</a>" : "";
             var cont,
                 conts = eval('(' + req.responseText + ')');
             if (conts.length) {
@@ -1087,7 +1087,7 @@ eidogo.Player.prototype = {
             return;
         }
 
-        var killNode = window.confirm(t['confirm delete']);
+        var killNode = window.confirm(eidogo.i18n['confirm delete']);
         if (killNode) {
             var id = this.cursor.node._id;
             var index = 0;
@@ -1323,7 +1323,7 @@ eidogo.Player.prototype = {
             this.unsavedChanges = true;
             var deleted = this.checkForEmptyNode();
             this.refresh();
-            if (deleted) this.prependComment(t['position deleted']);
+            if (deleted) this.prependComment(eidogo.i18n['position deleted']);
         }
 
         if (updated) this.trigger('eidogo-update');
@@ -1334,7 +1334,7 @@ eidogo.Player.prototype = {
     **/
     checkForEmptyNode: function() {
         if (!eidogo.util.numProperties(this.cursor.node.getProperties())) {
-            var killNode = window.confirm(t['confirm delete']);
+            var killNode = window.confirm(eidogo.i18n['confirm delete']);
             if (killNode) {
                 var id = this.cursor.node._id;
                 var index = 0;
@@ -1500,7 +1500,7 @@ eidogo.Player.prototype = {
         if (!this.searchUrl) {
             show(this.dom.comments);
             hide(this.dom.searchContainer);
-            this.prependComment(t['no search url']);
+            this.prependComment(eidogo.i18n['no search url']);
             return;
         }
 
@@ -1519,7 +1519,7 @@ eidogo.Player.prototype = {
             this.searching = false;
             show(this.dom.comments);
             hide(this.dom.searchContainer);
-            this.prependComment(t['two stones']);
+            this.prependComment(eidogo.i18n['two stones']);
             return;
         }
 
@@ -1537,7 +1537,7 @@ eidogo.Player.prototype = {
             this.searching = false;
             show(this.dom.comments);
             hide(this.dom.searchContainer);
-            this.prependComment(t['two edges']);
+            this.prependComment(eidogo.i18n['two edges']);
             return;
         }
 
@@ -1554,7 +1554,7 @@ eidogo.Player.prototype = {
             show(this.dom.searchContainer);
             this.showingSearch = true;
             if (req.responseText == "ERROR") {
-                this.croak(t['error retrieving']);
+                this.croak(eidogo.i18n['error retrieving']);
                 return;
             } else if (req.responseText == "NONE") {
                 hide(this.dom.searchResultsContainer);
@@ -1600,7 +1600,7 @@ eidogo.Player.prototype = {
             }
         }
         var failure = function(req) {
-            this.croak(t['error retrieving']);
+            this.croak(eidogo.i18n['error retrieving']);
         }
         var params = {
             q: quadrant,
@@ -1916,7 +1916,7 @@ eidogo.Player.prototype = {
         this.selectTool("play");
         var deleted = this.checkForEmptyNode();
         this.refresh();
-        if (deleted) this.prependComment(t['position deleted']);
+        if (deleted) this.prependComment(eidogo.i18n['position deleted']);
     },
 
     startEditGameInfo: function() {
@@ -1971,19 +1971,19 @@ eidogo.Player.prototype = {
     updateControls: function() {
         // move number
         this.dom.moveNumber.innerHTML = (this.moveNumber ?
-            (t['move'] + " " + this.moveNumber) :
+            (eidogo.i18n['move'] + " " + this.moveNumber) :
             (this.permalinkable ? "permalink" : ""));
 
         // captures
-        this.dom.whiteCaptures.innerHTML = t['captures'] +
+        this.dom.whiteCaptures.innerHTML = eidogo.i18n['captures'] +
             ": <span>" + this.board.captures.W + "</span>";
-        this.dom.blackCaptures.innerHTML = t['captures'] +
+        this.dom.blackCaptures.innerHTML = eidogo.i18n['captures'] +
             ": <span>" + this.board.captures.B + "</span>";
 
         // time
-        this.dom.whiteTime.innerHTML = t['time left'] + ": <span>" +
+        this.dom.whiteTime.innerHTML = eidogo.i18n['time left'] + ": <span>" +
             (this.timeW ? this.timeW : "--") + "</span>";
-        this.dom.blackTime.innerHTML = t['time left'] + ": <span>" +
+        this.dom.blackTime.innerHTML = eidogo.i18n['time left'] + ": <span>" +
             (this.timeB ? this.timeB : "--") + "</span>";
 
         removeClass(this.dom.controlPass, "pass-on");
@@ -2026,7 +2026,7 @@ eidogo.Player.prototype = {
         }
         if (this.variations.length < 2) {
             this.dom.variations.innerHTML = "<div class='variation-nav none'>" +
-                t['no variations'] + "</div>";
+                eidogo.i18n['no variations'] + "</div>";
         }
 
         // nav buttons
@@ -2067,20 +2067,20 @@ eidogo.Player.prototype = {
         var node = this.cursor.node, pos, html, js;
         if (node._parent && !node._parent._parent && node._parent._children.length > 1) {
             pos = node.getPosition();
-            html = t['multi-game sgf'];
+            html = eidogo.i18n['multi-game sgf'];
             js = "javascript:eidogo.delegate(" + this.uniq + ", \"goTo\", [";
             if (pos)
-                html += "<a href='" + js + (pos - 1) + ",0])'>" + t['previous game'] + "</a>";
+                html += "<a href='" + js + (pos - 1) + ",0])'>" + eidogo.i18n['previous game'] + "</a>";
             if (node._parent._children[pos + 1])
                 html += (pos ? " | " : "") +
-                        "<a href='" + js + (pos + 1) + ",0])'>" + t['next game'] + "</a>";
+                        "<a href='" + js + (pos + 1) + ",0])'>" + eidogo.i18n['next game'] + "</a>";
             this.prependComment(html, "comment-info");
         }
     },
 
     setColor: function(color) {
-        this.prependComment(color == "B" ? t['black to play'] :
-            t['white to play']);
+        this.prependComment(color == "B" ? eidogo.i18n['black to play'] :
+            eidogo.i18n['white to play']);
         this.currentColor = this.problemColor = color;
     },
 
@@ -2099,10 +2099,10 @@ eidogo.Player.prototype = {
         var pt = this.sgfCoordToPoint(coord);
         if ((!coord || coord == "tt" || coord == "") && !noRender) {
             this.prependComment((color == this.board.WHITE ?
-                t['white'] : t['black']) + " " + t['passed'], "comment-pass");
+                eidogo.i18n['white'] : eidogo.i18n['black']) + " " + eidogo.i18n['passed'], "comment-pass");
         } else if (coord == "resign") {
             this.prependComment((color == this.board.WHITE ?
-                t['white'] : t['black']) + " " + t['resigned'], "comment-resign");
+                eidogo.i18n['white'] : eidogo.i18n['black']) + " " + eidogo.i18n['resigned'], "comment-resign");
         } else if (coord && coord != "tt") {
             this.board.addStone(pt, color);
             this.rules.apply(pt, color);
@@ -2170,15 +2170,15 @@ eidogo.Player.prototype = {
         var msg;
         switch (type) {
             case 'N':  msg = value; break;
-            case 'GB': msg = (value > 1 ? t['vgb'] : t['gb']); break;
-            case 'GW': msg = (value > 1 ? t['vgw'] : t['gw']); break;
-            case 'DM': msg = (value > 1 ? t['dmj'] : t['dm']); break;
-            case 'UC': msg = t['uc']; break;
-            case 'TE': msg = t['te']; break;
-            case 'BM': msg = (value > 1 ? t['vbm'] : t['bm']); break;
-            case 'DO': msg = t['do']; break;
-            case 'IT': msg = t['it']; break;
-            case 'HO': msg = t['ho']; break;
+            case 'GB': msg = (value > 1 ? eidogo.i18n['vgb'] : eidogo.i18n['gb']); break;
+            case 'GW': msg = (value > 1 ? eidogo.i18n['vgw'] : eidogo.i18n['gw']); break;
+            case 'DM': msg = (value > 1 ? eidogo.i18n['dmj'] : eidogo.i18n['dm']); break;
+            case 'UC': msg = eidogo.i18n['uc']; break;
+            case 'TE': msg = eidogo.i18n['te']; break;
+            case 'BM': msg = (value > 1 ? eidogo.i18n['vbm'] : eidogo.i18n['bm']); break;
+            case 'DO': msg = eidogo.i18n['do']; break;
+            case 'IT': msg = eidogo.i18n['it']; break;
+            case 'HO': msg = eidogo.i18n['ho']; break;
         }
         this.prependComment(msg);
     },
@@ -2204,7 +2204,7 @@ eidogo.Player.prototype = {
         stopEvent(evt);
         if (this.downloadUrl) {
             if (this.unsavedChanges) {
-                 alert(t['unsaved changes']);
+                 alert(eidogo.i18n['unsaved changes']);
                 return;
             }
             location.href = this.downloadUrl + this.gameName;
@@ -2223,7 +2223,7 @@ eidogo.Player.prototype = {
             this.hook("saved", [req.responseText]);
         }
         var failure = function(req) {
-            this.croak(t['error retrieving']);
+            this.croak(eidogo.i18n['error retrieving']);
         }
         var sgf = this.cursor.getGameRoot().toSgf();
         ajax('POST', this.saveUrl, {sgf: sgf}, success, failure, this, 30000);
@@ -2280,58 +2280,58 @@ eidogo.Player.prototype = {
                     <div id='nav-slider-thumb' class='nav-slider-thumb'></div>\
                 </div>\
                 <div id='variations-container' class='variations-container'>\
-                    <div id='variations-label' class='variations-label'>" + t['variations'] + ":</div>\
+                    <div id='variations-label' class='variations-label'>" + eidogo.i18n['variations'] + ":</div>\
                     <div id='variations' class='variations'></div>\
                 </div>\
                 <div class='controls-stop'></div>\
             </div>\
             <div id='tools-container' class='tools-container'" + (this.prefs.showTools ? "" : " style='display: none'") + ">\
-                <div id='tools-label' class='tools-label'>" + t['tool'] + ":</div>\
+                <div id='tools-label' class='tools-label'>" + eidogo.i18n['tool'] + ":</div>\
                 <select id='tools-select' class='tools-select'>\
-                    <option value='play'>&#9658; " + t['play'] + "</option>\
-                    <option value='view'>&#8594; " + t['view'] + "</option>\
-                    <option value='add_b'>&#9679; " + t['add_b'] + "</option>\
-                    <option value='add_w'>&#9675; " + t['add_w'] + "</option>\
-                    " + (this.searchUrl ? ("<option value='region'>&#9618; " + t['region'] + "</option>") : "") +"\
-                    " + (this.saveUrl && !this.progressiveLoad ? ("<option value='comment'>&para; " + t['edit comment'] + "</option>") : "") + "\
-                    " + (this.saveUrl ? ("<option value='gameinfo'>&#8962; " + t['edit game info'] + "</option>") : "") + "\
-                    <option value='tr'>&#9650; " + t['triangle'] + "</option>\
-                    <option value='sq'>&#9632; " + t['square'] + "</option>\
-                    <option value='cr'>&#9679; " + t['circle'] + "</option>\
-                    <option value='x'>&times; " + t['x'] + "</option>\
-                    <option value='letter'>A " + t['letter'] + "</option>\
-                    <option value='number'>5 " + t['number'] + "</option>\
-                    <option value='label'>&Ccedil; " + t['label'] + "</option>\
-                    <option value='dim'>&#9619; " + t['dim'] + "</option>\
-                    <option value='clear'>&#9617; " + t['clear'] + "</option>\
+                    <option value='play'>&#9658; " + eidogo.i18n['play'] + "</option>\
+                    <option value='view'>&#8594; " + eidogo.i18n['view'] + "</option>\
+                    <option value='add_b'>&#9679; " + eidogo.i18n['add_b'] + "</option>\
+                    <option value='add_w'>&#9675; " + eidogo.i18n['add_w'] + "</option>\
+                    " + (this.searchUrl ? ("<option value='region'>&#9618; " + eidogo.i18n['region'] + "</option>") : "") +"\
+                    " + (this.saveUrl && !this.progressiveLoad ? ("<option value='comment'>&para; " + eidogo.i18n['edit comment'] + "</option>") : "") + "\
+                    " + (this.saveUrl ? ("<option value='gameinfo'>&#8962; " + eidogo.i18n['edit game info'] + "</option>") : "") + "\
+                    <option value='tr'>&#9650; " + eidogo.i18n['triangle'] + "</option>\
+                    <option value='sq'>&#9632; " + eidogo.i18n['square'] + "</option>\
+                    <option value='cr'>&#9679; " + eidogo.i18n['circle'] + "</option>\
+                    <option value='x'>&times; " + eidogo.i18n['x'] + "</option>\
+                    <option value='letter'>A " + eidogo.i18n['letter'] + "</option>\
+                    <option value='number'>5 " + eidogo.i18n['number'] + "</option>\
+                    <option value='label'>&Ccedil; " + eidogo.i18n['label'] + "</option>\
+                    <option value='dim'>&#9619; " + eidogo.i18n['dim'] + "</option>\
+                    <option value='clear'>&#9617; " + eidogo.i18n['clear'] + "</option>\
                 </select>\
-                <input type='button' id='score-est' class='score-est-button' value='" + t['score est'] + "' />\
+                <input type='button' id='score-est' class='score-est-button' value='" + eidogo.i18n['score est'] + "' />\
                 <select id='search-algo' class='search-algo'>\
-                    <option value='corner'>" + t['search corner'] + "</option>\
-                    <option value='center'>" + t['search center'] + "</option>\
+                    <option value='corner'>" + eidogo.i18n['search corner'] + "</option>\
+                    <option value='center'>" + eidogo.i18n['search center'] + "</option>\
                 </select>\
-                <input type='button' id='search-button' class='search-button' value='" + t['search'] + "' />\
+                <input type='button' id='search-button' class='search-button' value='" + eidogo.i18n['search'] + "' />\
                 <input type='text' id='label-input' class='label-input' />\
             </div>\
             <div id='comments' class='comments'></div>\
             <div id='comments-edit' class='comments-edit'>\
                 <textarea id='comments-edit-ta' class='comments-edit-ta'></textarea>\
-                <div id='comments-edit-done' class='comments-edit-done'>" + t['done'] + "</div>\
+                <div id='comments-edit-done' class='comments-edit-done'>" + eidogo.i18n['done'] + "</div>\
             </div>\
             <div id='game-info-edit' class='game-info-edit'>\
                 <div id='game-info-edit-form' class='game-info-edit-form'></div>\
-                <div id='game-info-edit-done' class='game-info-edit-done'>" + t['done'] + "</div>\
+                <div id='game-info-edit-done' class='game-info-edit-done'>" + eidogo.i18n['done'] + "</div>\
             </div>\
             <div id='search-container' class='search-container'>\
-                <div id='search-close' class='search-close'>" + t['close search'] + "</div>\
-                <p class='search-count'><span id='search-count'></span>&nbsp;" + t['matches found'] + "\
+                <div id='search-close' class='search-close'>" + eidogo.i18n['close search'] + "</div>\
+                <p class='search-count'><span id='search-count'></span>&nbsp;" + eidogo.i18n['matches found'] + "\
                     Showing <span id='search-offset-start'></span>-<span id='search-offset-end'></span></p>\
                 <div id='search-results-container' class='search-results-container'>\
                     <div class='search-result'>\
-                        <span class='pw'><b>" + t['white'] + "</b></span>\
-                        <span class='pb'><b>" + t['black'] + "</b></span>\
-                        <span class='re'><b>" + t['result'] + "</b></span>\
-                        <span class='dt'><b>" + t['date'] + "</b></span>\
+                        <span class='pw'><b>" + eidogo.i18n['white'] + "</b></span>\
+                        <span class='pb'><b>" + eidogo.i18n['black'] + "</b></span>\
+                        <span class='re'><b>" + eidogo.i18n['result'] + "</b></span>\
+                        <span class='dt'><b>" + eidogo.i18n['date'] + "</b></span>\
                         <div class='clear'></div>\
                     </div>\
                     <div id='search-results' class='search-results'></div>\
@@ -2341,8 +2341,8 @@ eidogo.Player.prototype = {
                 <div id='nav-tree' class='nav-tree'></div>\
             </div>\
             <div id='options' class='options'>\
-                " + (this.saveUrl ? "<a id='option-save' class='option-save' href='#'>" + t['save to server'] + "</a>" : "") + "\
-                " + (this.downloadUrl || isMoz ? "<a id='option-download' class='option-download' href='#'>" + t['download sgf'] + "</a>" : "") + "\
+                " + (this.saveUrl ? "<a id='option-save' class='option-save' href='#'>" + eidogo.i18n['save to server'] + "</a>" : "") + "\
+                " + (this.downloadUrl || isMoz ? "<a id='option-download' class='option-download' href='#'>" + eidogo.i18n['download sgf'] + "</a>" : "") + "\
                 <div class='options-stop'></div>\
             </div>\
             <div id='preferences' class='preferences'>\
@@ -2707,7 +2707,7 @@ eidogo.Player.prototype = {
     setPermalink: function() {
         if (!this.permalinkable) return true;
         if (this.unsavedChanges) {
-            alert(t['unsaved changes']);
+            alert(eidogo.i18n['unsaved changes']);
             return;
         }
         this.hook("setPermalink");
@@ -2715,7 +2715,7 @@ eidogo.Player.prototype = {
 
     nowLoading: function(msg) {
         if (this.croaked || this.problemMode) return;
-        msg = msg || t['loading'] + "...";
+        msg = msg || eidogo.i18n['loading'] + "...";
         if (byId('eidogo-loading-' + this.uniq)) return;
         this.domLoading = document.createElement('div');
         this.domLoading.id = "eidogo-loading-" + this.uniq;
