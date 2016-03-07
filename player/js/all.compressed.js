@@ -2909,6 +2909,18 @@ break;
 case "HO":
 msg=eidogo.i18n["ho"];
 break;
+case "V":
+_147=parseFloat(_147);
+if(_147==0){
+msg=t["dm"];
+}else{
+if(_147>0){
+msg=t["estimated score"].replace("%player%",t["black"]).replace("%value%",_147);
+}else{
+msg=t["estimated score"].replace("%player%",t["white"]).replace("%value%",-_147);
+}
+}
+break;
 }
 this.prependComment(msg);
 },showComments:function(_14a,junk,_14c){
@@ -3321,4 +3333,3 @@ eidogo.autoPlayers.push(_e);
 }
 });
 })();
-

@@ -2170,6 +2170,7 @@ eidogo.Player.prototype = {
         var msg;
         switch (type) {
             case 'N':  msg = value; break;
+<<<<<<< HEAD
             case 'GB': msg = (value > 1 ? eidogo.i18n['vgb'] : eidogo.i18n['gb']); break;
             case 'GW': msg = (value > 1 ? eidogo.i18n['vgw'] : eidogo.i18n['gw']); break;
             case 'DM': msg = (value > 1 ? eidogo.i18n['dmj'] : eidogo.i18n['dm']); break;
@@ -2179,6 +2180,26 @@ eidogo.Player.prototype = {
             case 'DO': msg = eidogo.i18n['do']; break;
             case 'IT': msg = eidogo.i18n['it']; break;
             case 'HO': msg = eidogo.i18n['ho']; break;
+=======
+            case 'GB': msg = (value > 1 ? t['vgb'] : t['gb']); break;
+            case 'GW': msg = (value > 1 ? t['vgw'] : t['gw']); break;
+            case 'DM': msg = (value > 1 ? t['dmj'] : t['dm']); break;
+            case 'UC': msg = t['uc']; break;
+            case 'TE': msg = t['te']; break;
+            case 'BM': msg = (value > 1 ? t['vbm'] : t['bm']); break;
+            case 'DO': msg = t['do']; break;
+            case 'IT': msg = t['it']; break;
+            case 'HO': msg = t['ho']; break;
+            case 'V':
+                value = parseFloat(value);
+                if (value == 0)
+                    msg = t['dm'];
+                else if (value > 0)
+                    msg = t['estimated score'].replace('%player%', t['black']).replace('%value%', value);
+                else
+                    msg = t['estimated score'].replace('%player%', t['white']).replace('%value%', - value);
+                break;
+>>>>>>> 34f4a5e9f0924c10e68b479c2d10b6da39f1726b
         }
         this.prependComment(msg);
     },
