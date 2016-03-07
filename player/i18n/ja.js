@@ -103,6 +103,7 @@ eidogo.i18n = {
     'black to play':    '黒番',
     'white to play':    '白番',
     'ho':               '急場',
+    'estimated score':  '地合は%player%%value%目リード',
 
     'confirm delete':   'この着手以降、すべてのプロパティを削除します。\n\nこの着手と全ての変化図の分岐を削除しますか？',
     'position deleted': '着手の削除',

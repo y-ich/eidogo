@@ -105,6 +105,7 @@ eidogo.i18n = {
     'black to play':    'Schwarz am Zug',
     'white to play':    'Wei� am Zug',
     'ho':               'Hotspot',
+    'estimated score':  '%player% leads territory by %value%.',
 
     'confirm delete':   'Du hast alle Eigenschaften dieser Stellung entfernt.\n\nL�sche diese Stellung und alle Stellungen darunter?',
     'position deleted': 'Stellung gel�scht',

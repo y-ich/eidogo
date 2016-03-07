@@ -105,6 +105,7 @@ eidogo.i18n = {
     'black to play':    'Black to play',
     'white to play':    'White to play',
     'ho':               'Hotspot',
+    'estimated score':  '%player% leads territory by %value%.',
 
     'confirm delete':   'You\'ve removed all properties from this position.\n\nDelete this position and all sub-positions?',
     'position deleted': 'Position deleted',
