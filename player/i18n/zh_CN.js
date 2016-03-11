@@ -1,9 +1,6 @@
-﻿eidogo = window.eidogo || {};
-<<<<<<< HEAD
-eidogo.i18n = {
-=======
-eidogo.i18n = eidogo.i18n || {
->>>>>>> 34f4a5e9f0924c10e68b479c2d10b6da39f1726b
+eidogo = window.eidogo || {};
+eidogo.langs = eidogo.langs || {};
+eidogo.langs.zh_CN = {
     'move':             '步数',
     'loading':          '载入中',
     'passed':           'passed',

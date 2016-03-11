@@ -2184,9 +2184,9 @@ eidogo.Player.prototype = {
                 if (value == 0)
                     msg = eidogo.i18n['dm'];
                 else if (value > 0)
-                    msg = eidogo.i18n['estimated score'].replace('%player%', t['black']).replace('%value%', value);
+                    msg = eidogo.i18n['estimated score'].replace('%player%', eidogo.i18n['black']).replace('%value%', value);
                 else
-                    msg = eidogo.i18n['estimated score'].replace('%player%', t['white']).replace('%value%', - value);
+                    msg = eidogo.i18n['estimated score'].replace('%player%', eidogo.i18n['white']).replace('%value%', - value);
                 break;
         }
         this.prependComment(msg);

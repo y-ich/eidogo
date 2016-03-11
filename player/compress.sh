@@ -24,3 +24,21 @@ $RHINOC js/board.js >> $OUTFILE 2>&1
 $RHINOC js/rules.js >> $OUTFILE 2>&1
 $RHINOC js/player.js >> $OUTFILE 2>&1
 $RHINOC js/init.js >> $OUTFILE 2>&1
+
+cat js/custom-event-polyfill.js \
+    js/lang.js \
+    js/eidogo.js \
+    js/util.js \
+    i18n/en.js \
+    i18n/de.js \
+    i18n/es.js \
+    i18n/fr.js \
+    i18n/ja.js \
+    i18n/pt.js \
+    i18n/zh_CN.js \
+    js/gametree.js \
+    js/sgf.js \
+    js/board.js \
+    js/rules.js \
+    js/player.js \
+    js/init.js > js/all.eidogo.js

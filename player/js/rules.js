@@ -28,7 +28,7 @@ eidogo.Rules.prototype = {
         if (this.board.getStone(pt) != this.board.EMPTY) {
             return false;
         }
-        // TODO: check for suicide? (allowed in certain rulesets)    
+        // TODO: check for suicide? (allowed in certain rulesets)
         // TODO: ko
         return true;
     },
@@ -82,9 +82,9 @@ eidogo.Rules.prototype = {
         for (var i = 0; i < this.pendingCaptures.length; i++)
             if (this.pendingCaptures[i].x == pt.x && this.pendingCaptures[i].y == pt.y)
                 return 0;
-        
+
         this.pendingCaptures.push(pt);
-        
+
         if (this.findCaptures({x: pt.x-1, y: pt.y}, color))
             return 1;
         if (this.findCaptures({x: pt.x+1, y: pt.y}, color))
@@ -95,4 +95,4 @@ eidogo.Rules.prototype = {
             return 1;
         return 0;
     }
-}
+};

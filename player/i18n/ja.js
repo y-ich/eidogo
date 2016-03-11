@@ -1,5 +1,6 @@
 eidogo = window.eidogo || {};
-eidogo.i18n = {
+eidogo.langs = eidogo.langs || {};
+eidogo.langs.ja = {
     'move':             '着手',
     'loading':          'ロード中',
     'passed':           'パス',

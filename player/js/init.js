@@ -31,6 +31,8 @@
         }
     }
 
+    eidogo.i18n = eidogo.langs[autoCfg.i18n || 'en'];
+
     eidogo.util.addEvent(window, "load", function() {
         eidogo.autoPlayers = [];
         var els = [];

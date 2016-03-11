@@ -1,5 +1,6 @@
 eidogo = window.eidogo || {};
-eidogo.i18n = {
+eidogo.langs = eidogo.langs || {};
+eidogo.langs.de = {
     'move':             'Zug',
     'loading':          'Laden',
     'passed':           'passt',
