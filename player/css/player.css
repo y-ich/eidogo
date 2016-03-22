@@ -15,6 +15,9 @@
 	color: #000;
 	text-align: left;
 }
+.eidogo-player:focus {
+    outline: 0;
+}
 .eidogo-player ul, .eidogo-player ol, .eidogo-player dl, .eidogo-player dd, .eidogo-player dt {
 	margin: 0;
 	padding: 0;

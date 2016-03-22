@@ -1734,6 +1734,7 @@ eidogo.Player.prototype = {
      * Keyboard shortcut handling
     **/
     handleKeypress: function(e) {
+        if (this.dom.player !== document.activeElement) return true;
         if (this.editingText) return true;
         var charCode = e.keyCode || e.charCode;
         if (!charCode || e.ctrlKey || e.altKey || e.metaKey) return true;
@@ -2246,6 +2247,7 @@ eidogo.Player.prototype = {
     constructDom: function() {
 
         this.dom.player = document.createElement('div');
+        this.dom.player.tabIndex = -1;
         this.dom.player.className = "eidogo-player" +
             (this.theme ? " theme-" + this.theme : "");
         this.dom.player.id = "player-" + this.uniq;

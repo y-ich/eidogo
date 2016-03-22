@@ -2494,6 +2494,9 @@ this.unsavedChanges=[this.cursor.node._children.last(),this.cursor.node];
 this.updatedNavTree=false;
 this.variation(this.cursor.node._children.length-1);
 },handleKeypress:function(e){
+if(this.dom.player!==document.activeElement){
+return true;
+}
 if(this.editingText){
 return true;
 }
@@ -2957,6 +2960,7 @@ var sgf=this.cursor.getGameRoot().toSgf();
 _3("POST",this.saveUrl,{sgf:sgf},_151,_153,this,30000);
 },constructDom:function(){
 this.dom.player=document.createElement("div");
+this.dom.player.tabIndex=-1;
 this.dom.player.className="eidogo-player"+(this.theme?" theme-"+this.theme:"");
 this.dom.player.id="player-"+this.uniq;
 this.dom.container.innerHTML="";
