@@ -1082,12 +1082,17 @@ eidogo.Player.prototype = {
             this.trigger('eidogo-update');
         }
     },
-    del: function() {
+    del: function(noConfirm) {
         if (!this.cursor.hasPrevious()) {
             return;
         }
 
-        var killNode = window.confirm(eidogo.i18n['confirm delete']);
+        var killNode;
+        if (!noConfirm) {
+            killNode = window.confirm(eidogo.i18n['confirm delete']);
+        } else {
+            killNode = true;
+        }
         if (killNode) {
             var id = this.cursor.node._id;
             var index = 0;
@@ -1233,6 +1238,10 @@ eidogo.Player.prototype = {
         }
 
         if (this.mode == "play") {
+            if (!this.cursor.hasNext() && (this.cursor.node.B || this.cursor.node.W) == coord) {
+                this.del(true);
+                return;
+            }
             // can't click there?
             if (!this.rules.check({x: x, y: y}, this.currentColor)) {
                 return;
