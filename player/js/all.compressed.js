@@ -2882,13 +2882,19 @@ this.board.addMarker(this.sgfCoordToPoint((_13f[i].split(":"))[0]),_141);
 },showTime:function(_143,type){
 var tp=(type=="BL"||type=="OB"?"timeB":"timeW");
 if(type=="BL"||type=="WL"){
+if(_143>=0){
+sign="";
+}else{
+sign="-";
+_143=-_143;
+}
 var _146=Math.floor(_143/3600);
 var rest=_143%3600;
 var mins=Math.floor(rest/60);
 mins=(mins<10?"0":"")+mins;
 var secs=(rest%60).toFixed(0);
 secs=(secs<10?"0":"")+secs;
-this[tp]=_146+":"+mins+":"+secs;
+this[tp]=sign+_146+":"+mins+":"+secs;
 }else{
 this[tp]+=" ("+_143+")";
 }

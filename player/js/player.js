@@ -2164,13 +2164,19 @@ eidogo.Player.prototype = {
     showTime: function(value, type) {
         var tp = (type == "BL" || type == "OB" ? "timeB" : "timeW");
         if (type == "BL" || type == "WL") {
+            if (value >= 0) {
+                sign = '';
+            } else {
+                sign = '-';
+                value = - value;
+            }
             var hours = Math.floor(value / 3600);
             var rest = value % 3600;
             var mins = Math.floor(rest / 60);
             mins = (mins < 10 ? "0" : "") + mins;
             var secs = (rest % 60).toFixed(0);
             secs = (secs < 10 ? "0" : "") + secs;
-            this[tp] = hours + ":" + mins + ":" + secs;
+            this[tp] = sign + hours + ":" + mins + ":" + secs;
         } else {
             this[tp] += " (" + value + ")";
         }
