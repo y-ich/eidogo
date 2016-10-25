@@ -1647,7 +1647,7 @@ _4d();
 }
 };
 var _56=this.cursor.getGameRoot();
-var _57={sgf:this.cursor.toSgf(),move:"est",size:_56.SZ||19,komi:_56.KM||0,mn:this.moveNumber+1};
+var _57={sgf:this.cursor.toSgf(),move:"est",size:_56.SZ||19,komi:_56.KM||0,rule:(_56.RU=="Chinese"||_56.RU=="GOE")?"chinese":"japanese",mn:this.moveNumber+1};
 if(_4c){
 _57.method=_4c;
 }

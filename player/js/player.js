@@ -701,6 +701,7 @@ eidogo.Player.prototype = {
             move: 'est',
             size: root.SZ || 19,
             komi: root.KM || 0,
+            rule: (root.RU == 'Chinese' || root.RU == 'GOE') ? 'chinese' : 'japanese',
             mn: this.moveNumber + 1
         };
         if (method) params.method = method;
