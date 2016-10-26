@@ -2720,12 +2720,14 @@ this.showGameInfo(root);
 this.dom.gameInfoEditForm.innerHTML="";
 this.selectTool("play");
 this.refresh();
+},updateTime:function(){
+this.dom.whiteTime.innerHTML=eidogo.i18n["time left"]+": <span>"+(this.timeW?this.timeW:"--")+"</span>";
+this.dom.blackTime.innerHTML=eidogo.i18n["time left"]+": <span>"+(this.timeB?this.timeB:"--")+"</span>";
 },updateControls:function(){
 this.dom.moveNumber.innerHTML=(this.moveNumber?(eidogo.i18n["move"]+" "+this.moveNumber):(this.permalinkable?"permalink":""));
 this.dom.whiteCaptures.innerHTML=eidogo.i18n["captures"]+": <span>"+this.board.captures.W+"</span>";
 this.dom.blackCaptures.innerHTML=eidogo.i18n["captures"]+": <span>"+this.board.captures.B+"</span>";
-this.dom.whiteTime.innerHTML=eidogo.i18n["time left"]+": <span>"+(this.timeW?this.timeW:"--")+"</span>";
-this.dom.blackTime.innerHTML=eidogo.i18n["time left"]+": <span>"+(this.timeB?this.timeB:"--")+"</span>";
+this.updateTime();
 _9(this.dom.controlPass,"pass-on");
 this.dom.variations.innerHTML="";
 for(var i=0;i<this.variations.length;i++){

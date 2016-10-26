@@ -1976,6 +1976,13 @@ eidogo.Player.prototype = {
         this.refresh();
     },
 
+    updateTime: function() {
+        this.dom.whiteTime.innerHTML = eidogo.i18n['time left'] + ": <span>" +
+            (this.timeW ? this.timeW : "--") + "</span>";
+        this.dom.blackTime.innerHTML = eidogo.i18n['time left'] + ": <span>" +
+            (this.timeB ? this.timeB : "--") + "</span>";
+    },
+
     /**
      * Update all our UI elements to reflect the current game state
     **/
@@ -1992,10 +1999,7 @@ eidogo.Player.prototype = {
             ": <span>" + this.board.captures.B + "</span>";
 
         // time
-        this.dom.whiteTime.innerHTML = eidogo.i18n['time left'] + ": <span>" +
-            (this.timeW ? this.timeW : "--") + "</span>";
-        this.dom.blackTime.innerHTML = eidogo.i18n['time left'] + ": <span>" +
-            (this.timeB ? this.timeB : "--") + "</span>";
+        this.updateTime();
 
         removeClass(this.dom.controlPass, "pass-on");
 
