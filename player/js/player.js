@@ -1847,6 +1847,9 @@ eidogo.Player.prototype = {
                 if ((this.theme === 'problem') && (propName !== 'SO' && propName !== 'GC')) {
                     continue;
                 }
+                if ((this.theme !== 'problem') && (propName === 'GC')) {
+                    continue;
+                }
                 val = gameInfo[propName];
                 if (propName == "DT") {
                     var dateParts = gameInfo[propName].split(/[\.-]/);

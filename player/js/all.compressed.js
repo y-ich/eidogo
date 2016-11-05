@@ -2600,6 +2600,9 @@ continue;
 if((this.theme==="problem")&&(_118!=="SO"&&_118!=="GC")){
 continue;
 }
+if((this.theme!=="problem")&&(_118==="GC")){
+continue;
+}
 val=_115[_118];
 if(_118=="DT"){
 var _119=_115[_118].split(/[\.-]/);
