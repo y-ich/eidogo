@@ -129,6 +129,7 @@ eidogo.Player.prototype = {
             DO: this.showAnnotation,
             IT: this.showAnnotation,
             TE: this.showAnnotation,
+            TM: this.showTime,
             BL: this.showTime,
             OB: this.showTime,
             WL: this.showTime,
@@ -2171,20 +2172,47 @@ eidogo.Player.prototype = {
 
     showTime: function(value, type) {
         var tp = (type == "BL" || type == "OB" ? "timeB" : "timeW");
-        if (type == "BL" || type == "WL") {
+        var v;
+        if (type == "BL" || type == "WL" || type == "TM") {
+            var sign;
             if (value >= 0) {
                 sign = '';
+                v = value;
             } else {
                 sign = '-';
-                value = - value;
+                v = - value;
             }
-            var hours = Math.floor(value / 3600);
-            var rest = value % 3600;
+            var hours = Math.floor(v / 3600);
+            var rest = v % 3600;
             var mins = Math.floor(rest / 60);
             mins = (mins < 10 ? "0" : "") + mins;
             var secs = (rest % 60).toFixed(0);
             secs = (secs < 10 ? "0" : "") + secs;
-            this[tp] = sign + hours + ":" + mins + ":" + secs;
+            if (type == "TM") {
+                this.timeB = sign + hours + ":" + mins + ":" + secs;
+                this.timeW = this.timeB;
+            } else {
+                var used;
+                if (this.cursor.node._parent) {
+                    if (this.cursor.node._parent[type]) {
+                        used = this.cursor.node._parent[type] - value;
+                    } else if (this.cursor.node._parent.TM) {
+                        used = this.cursor.node._parent.TM - value;
+                    } else if (this.cursor.node._parent._parent) {
+                        if (this.cursor.node._parent._parent[type]) {
+                            used = this.cursor.node._parent._parent[type] - value;
+                        } else if (this.cursor.node._parent._parent.TM) {
+                            used = this.cursor.node._parent._parent.TM - value;
+                        }
+                    }
+                } else if (this.cursor.node.TM) {
+                    used = this.cursor.node.TM - value;
+                }
+                this[tp] = sign + hours + ":" + mins + ":" + secs;
+                if (used) {
+                    this[tp] += " (" + Math.floor(used / 60) + ")";
+                }
+            }
         } else {
             this[tp] += " (" + value + ")";
         }
