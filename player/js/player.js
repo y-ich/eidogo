@@ -733,7 +733,7 @@ eidogo.Player.prototype = {
     goTo: function(path, fromStart) {
         fromStart = typeof fromStart != "undefined" ? fromStart : true;
 
-        if (fromStart && path.length > 1 && path[1] != this.cursor.getGameRoot().getPosition())
+        if (fromStart && path.length > 1 && path[0] != this.cursor.getGameRoot().getPosition())
             this.updatedNavTree = false;
 
         if (fromStart)
@@ -784,16 +784,14 @@ eidogo.Player.prototype = {
         var first = true;
         while (path.length) {
             position = parseInt(path.shift(), 10);
-            if (path.length == 0) {
-                if (fromStart)
-                    position++;
+            if (!path.length) {
                 for (var i = 0; i < position; i++)
                     this.variation(0, true);
-            } else if (!first) {
-                this.variation(position, true);
-                if (path.length > 1)
+            } else if (path.length) {
+                if (!first && fromStart)
                     while (this.cursor.node._children.length == 1)
                         this.variation(0, true);
+                this.variation(position, true);
             }
             first = false;
         }
@@ -1224,13 +1222,13 @@ eidogo.Player.prototype = {
                 return
             // Jump to any moved played at the clicked coordinate
             var root = this.cursor.getGameRoot(),
-                path = [0, root.getPosition()],
-                mn = 0,
+                path = [root.getPosition()],
+                mn = 1,
                 node = root._children[0];
             while (node) {
                 if (node.getMove() == coord) {
                     path.push(mn);
-                    this.goTo(path);
+                    this.goTo(path, true);
                     break;
                 }
                 mn++;

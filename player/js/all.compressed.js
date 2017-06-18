@@ -1665,7 +1665,7 @@ this.prependComment(eidogo.i18n["end of variation"]);
 }.bind(this),200);
 },goTo:function(_59,_5a){
 _5a=typeof _5a!="undefined"?_5a:true;
-if(_5a&&_59.length>1&&_59[1]!=this.cursor.getGameRoot().getPosition()){
+if(_5a&&_59.length>1&&_59[0]!=this.cursor.getGameRoot().getPosition()){
 this.updatedNavTree=false;
 }
 if(_5a){
@@ -1712,21 +1712,18 @@ return;
 var _5f=true;
 while(_59.length){
 _5d=parseInt(_59.shift(),10);
-if(_59.length==0){
-if(_5a){
-_5d++;
-}
+if(!_59.length){
 for(var i=0;i<_5d;i++){
 this.variation(0,true);
 }
 }else{
-if(!_5f){
-this.variation(_5d,true);
-if(_59.length>1){
+if(_59.length){
+if(!_5f&&_5a){
 while(this.cursor.node._children.length==1){
 this.variation(0,true);
 }
 }
+this.variation(_5d,true);
 }
 }
 _5f=false;
@@ -2078,11 +2075,11 @@ if(this.mode=="view"){
 if(this.board.getStone({x:x,y:y})==this.board.EMPTY){
 return;
 }
-var _b3=this.cursor.getGameRoot(),_b4=[0,_b3.getPosition()],mn=0,_b6=_b3._children[0];
+var _b3=this.cursor.getGameRoot(),_b4=[_b3.getPosition()],mn=1,_b6=_b3._children[0];
 while(_b6){
 if(_b6.getMove()==_b0){
 _b4.push(mn);
-this.goTo(_b4);
+this.goTo(_b4,true);
 break;
 }
 mn++;

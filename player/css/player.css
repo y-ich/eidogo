@@ -986,7 +986,7 @@
 .eidogo-player.theme-problem .board.size13 {
     margin: 0;
 }
-.eidogo-player.theme-problem .controls-container {
+.eidogo-player.theme-problem .controls-container, .eidogo-player.theme-problem .nav-tree-container {
     float: none;
     width: auto;
     background: #333;
