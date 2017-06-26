@@ -2059,7 +2059,7 @@ return;
 this.mouseDown=false;
 var _b0=this.pointToSgfCoord({x:x,y:y});
 setTimeout(function(){
-_af.trigger("eidogo-board-clicked",{coord:_b0});
+_af.trigger("eidogo-board-clicked",{uniq:_af.uniq,x:x,y:y,coord:_b0});
 },0);
 if(this.mode=="view"||this.mode=="play"){
 for(var i=0;i<this.variations.length;i++){

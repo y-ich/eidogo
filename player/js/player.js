@@ -1202,7 +1202,12 @@ eidogo.Player.prototype = {
         var coord = this.pointToSgfCoord({x: x, y: y});
 
         setTimeout(function(){
-            _self.trigger('eidogo-board-clicked', { coord: coord });
+            _self.trigger('eidogo-board-clicked', {
+                uniq: _self.uniq,
+                x: x,
+                y: y,
+                coord: coord
+            });
         }, 0);
 
         // click on a variation?
