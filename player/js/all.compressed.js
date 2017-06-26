@@ -464,7 +464,7 @@ if(!this[_e].length){
 delete this[_e];
 }
 }else{
-if(_10(this.prop)){
+if(_10(this[_e])){
 delete this[_e];
 }
 }

@@ -90,7 +90,7 @@ eidogo.GameNode.prototype = {
             if (this[prop] instanceof Array) {
                 this[prop] = this[prop].filter(function(v) { return !test(v); });
                 if (!this[prop].length) delete this[prop];
-            } else if (test(this.prop)) {
+            } else if (test(this[prop])) {
                 delete this[prop];
             }
         }
@@ -226,22 +226,22 @@ eidogo.GameNode.prototype = {
     toSgf: function() {
         var sgf = (this._parent ? "(" : "");
         var node = this;
-        
+
         sgf += eidogo._propsToSgf(node.getProperties());
-        
+
         // Follow main line until we get to a node with multiple variations
         while (node._children.length == 1) {
             node = node._children[0];
             sgf += eidogo._propsToSgf(node.getProperties());
         }
-        
+
         // Variations
         for (var i = 0; i < node._children.length; i++) {
             sgf += node._children[i].toSgf();
         }
-        
+
         sgf += (this._parent ? ")" : "");
-        
+
         return sgf;
     }
 };
