@@ -319,7 +319,8 @@ eidogo.BoardRendererHtml.prototype = {
                 div.style.left = (pt.x * this.pointWidth + this.margin - this.scrollX) + "px";
                 div.style.top = (pt.y * this.pointHeight + this.margin - this.scrollY) + "px";
             } catch (e) {}
-            div.appendChild(document.createTextNode(text));
+            // div.appendChild(document.createTextNode(text));
+            div.innerHTML = text;
             this.domNode.appendChild(div);
             return div;
         }

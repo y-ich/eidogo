@@ -1059,7 +1059,7 @@ div.style.top=(pt.y*this.pointHeight+this.margin-this.scrollY)+"px";
 }
 catch(e){
 }
-div.appendChild(document.createTextNode(_32));
+div.innerHTML=_32;
 this.domNode.appendChild(div);
 return div;
 }
